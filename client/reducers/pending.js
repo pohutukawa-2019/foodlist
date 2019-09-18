@@ -4,7 +4,7 @@ export default function (pending = false, action) {
       return true
 
     case 'GET_FOOD_SUCCESS':
-      return false,
+      return false
 
     default:
       return pending
