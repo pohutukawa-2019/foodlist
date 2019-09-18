@@ -6,6 +6,12 @@ export default function (pending = false, action) {
     case 'GET_FOOD_SUCCESS':
       return false
 
+    case 'GET_FOOD_DETAILS_PENDING':
+      return true
+
+    case 'GET_FOOD_DETAILS_SUCCESS':
+      return false
+
     default:
       return pending
   }
