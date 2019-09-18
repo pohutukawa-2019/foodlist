@@ -9,4 +9,9 @@ router.get('/', (req, res) => {
     .then(foods => res.status(200).json(foods))
 })
 
+router.get('/:id', (req, res) => {
+  db.getFoodById(req.params.id)
+    .then(foodData => res.json(foodData))
+})
+
 module.exports = router
