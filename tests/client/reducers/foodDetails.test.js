@@ -13,8 +13,10 @@ test('foodDetails reducer returns the food\'s details', () => {
   const currentState = {}
   const action = {
     type: 'GET_FOOD_DETAILS_SUCCESS',
-    foodDetails: 'hit the test'
+    foodDetails: {
+      details: 'hit the test'
+    }
   }
   const newState = foodDetails(currentState, action)
-  expect(newState).toBe('hit the test')
+  expect(newState.details).toBe('hit the test')
 })
