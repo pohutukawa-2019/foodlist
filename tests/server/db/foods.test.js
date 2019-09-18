@@ -10,10 +10,10 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-test('db.getFoods returns an array of 20 foods', () => {
+test('db.getFoods returns an array of 27 foods', () => {
   expect.assertions(1)
 
-  const expected = 20
+  const expected = 27
 
   return db.getFoods(testDb)
     .then(foods => {
