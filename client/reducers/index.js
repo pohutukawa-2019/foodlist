@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import foods from './foods'
-import info from './info'
+import error from './error'
+import pending from './pending'
 
 export default combineReducers({
   foods,
-  info
+  error,
+  pending
 })
