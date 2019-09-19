@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@1.1.6
   heroku: circleci/heroku@0.0.8
 jobs:
-  build:
+  build-test:
     executor:
       name: node/default
       tag: '10.6'
@@ -13,15 +13,6 @@ jobs:
           steps:
             - run: npm install
             - run: npm run build
-  test:
-    executor:
-      name: node/default
-      tag: '10.6'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
             - run: npm run lint
             - run: npm test
     environment:
@@ -38,15 +29,7 @@ workflows:
   version: 2
   default:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - dev
-                - master
-      - test:
-          requires:
-            - build
+      - build-test:
           filters:
             branches:
               only:
@@ -54,7 +37,7 @@ workflows:
                 - master
       - deploy:
           requires:
-            - test
+            - build-test
           filters:
             branches:
               only: master
