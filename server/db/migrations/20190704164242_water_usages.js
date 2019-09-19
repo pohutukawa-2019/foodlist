@@ -1,7 +1,7 @@
 exports.up = knex =>
   knex.schema.createTable('water_usages', (table) => {
     table.increments('id').primary()
-    table.integer('foods_id')
+    table.integer('food_id')
       .references('foods.id')
     table.decimal('value', null, 2)
   })
