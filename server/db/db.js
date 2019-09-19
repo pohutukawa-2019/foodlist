@@ -7,6 +7,14 @@ function getFoods (db = connection) {
     .select('foods.id as id', 'name', 'category_id', 'carbon_outputs.value as carbonOutput', 'water_usages.value as waterUsage')
 }
 
+function getFoodsByCategory (categoryName, db = connection) {
+  return db('foods')
+    .join('categories', 'foods.category_id', '=', 'categories.id')
+    .select('categories.name as category', 'foods.name')
+    .where('categories.name', categoryName)
+}
+
 module.exports = {
-  getFoods
+  getFoods,
+  getFoodsByCategory
 }
