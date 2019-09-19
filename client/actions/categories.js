@@ -1,24 +1,34 @@
-import { error } from './error'
-
-export const GET_CATEGORIES_PENDING = 'GET_CATEGORIES_PENDING'
-function getCategoriesPending () {
+export function getCategoriesPending () {
   return {
-    type: GET_CATEGORIES_PENDING
+    type: 'GET_CATEGORIES_PENDING'
   }
 }
 
-export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
-function getCategoriesSuccess (categories) {
+export function getCategoriesSuccess (categories) {
   return {
-    type: GET_CATEGORIES_SUCCESS,
+    type: 'GET_CATEGORIES_SUCCESS',
     categories
   }
 }
 
-export const GET_CATEGORIES_ERROR = 'GET_CATEGORIES_ERROR'
-function getCategoriesError (error) {
+export function getCategoriesError (error) {
   return {
-    type: 'GET_CATEGORIES_ERROR',
-    error
+    type: 'ERROR',
+    message: error
+  }
+}
+
+export function getCategories (categories) {
+  return (dispatch) => {
+    dispatch(getCategoriesPending())
+    return request 
+      .get(`api/v1/categories/${categories}`)
+      .then(res =>{
+      dispatch(getCategoriesSuccess(res.body))
+    })
+      .catch(err =>{
+        dispatch(getCategoriesError(err.message))
+      })
+    
   }
 }
