@@ -1,4 +1,4 @@
-import categoryReducer from '../../../client/reducers/categories'
+import categoriesReducer from '../../../client/reducers/categories'
 
 describe('category reducer tests', () => {
   it('GET_CATEGORIES_SUCCESS action returns array', () => {
@@ -9,7 +9,7 @@ describe('category reducer tests', () => {
       categories: ['c1', 'c2', 'c3', 'c4', 'c5']
     }
 
-    const actual = categoryReducer(testStateArr, testAction)
+    const actual = categoriesReducer(testStateArr, testAction)
 
     expect(actual.length).toBe(5)
     expect(actual[2]).toBe('c3')
@@ -20,7 +20,7 @@ describe('category reducer tests', () => {
     const testAction = {
       type: 'NO_MATCH'
     }
-    const actual = categoryReducer(testState, testAction)
+    const actual = categoriesReducer(testState, testAction)
 
     expect(actual).toBe(testState)
   })
