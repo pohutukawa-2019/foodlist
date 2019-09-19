@@ -1,33 +1,52 @@
 module.exports = {
   reset,
   getFoods,
+  getFoodById,
   getFoodsByCategory
 }
 
 const defaultFoods = [
   {
+    id: 1,
     category: 'Fruits',
-    name: 'Tomatoes'
+    name: 'Tomatoes',
+    carbonValue: 1000,
+    waterUsage: 500
   },
   {
+    id: 2,
     category: 'Fruits',
-    name: 'Oranges'
+    name: 'Oranges',
+    carbonValue: 1000,
+    waterUsage: 500
   },
   {
+    id: 3,
     category: 'Fruits',
-    name: 'Apples'
+    name: 'Apples',
+    carbonValue: 1000,
+    waterUsage: 500
   },
   {
+    id: 4,
     category: 'Fruits',
-    name: 'Strawberries'
+    name: 'Strawberries',
+    carbonValue: 1000,
+    waterUsage: 500
   },
   {
+    id: 5,
     category: 'Fruits',
-    name: 'Avocados'
+    name: 'Avocados',
+    carbonValue: 1000,
+    waterUsage: 500
   },
   {
+    id: 6,
     category: 'Fruits',
-    name: 'Plums'
+    name: 'Plums',
+    carbonValue: 1000,
+    waterUsage: 500
   }
 ]
 
@@ -39,6 +58,10 @@ function reset () {
 
 function getFoods () {
   return foods
+}
+
+function getFoodById (id) {
+  return Promise.resolve(foods.find(food => food.id === id))
 }
 
 async function getFoodsByCategory (category) {
