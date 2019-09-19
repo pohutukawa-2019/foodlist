@@ -3,7 +3,7 @@ import categoriesReducer from '../../../client/reducers/categories'
 describe('category reducer tests', () => {
   it('GET_CATEGORIES_SUCCESS action returns array', () => {
     const testStateArr = []
-   
+
     const testAction = {
       type: 'GET_CATEGORIES_SUCCESS',
       categories: ['c1', 'c2', 'c3', 'c4', 'c5']
