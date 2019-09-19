@@ -1,0 +1,14 @@
+version: 2
+jobs:
+    branches:
+        only:
+            - dev
+            - master
+    docker:
+        - image: circleci/node:7.10-browsers
+            environment:
+                CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+        - checkout
+        - run: npm install
+        - run: npm test
