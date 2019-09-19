@@ -2,8 +2,36 @@ module.exports = {
   reset,
   getFoods,
   getFoodById,
-  getFoodsByCategory
+  getFoodsByCategory,
+  getCategories
 }
+
+const defaultCategories = [
+  {
+    id: 1,
+    name: 'Fruits'
+  },
+  {
+    id: 2,
+    name: 'Vegetables'
+  },
+  {
+    id: 3,
+    name: 'Grains, beans, and legumes'
+  },
+  {
+    id: 4,
+    name: 'Fish'
+  },
+  {
+    id: 5,
+    name: 'Meat'
+  },
+  {
+    id: 6,
+    name: 'Animal byproducts'
+  }
+]
 
 const defaultFoods = [
   {
@@ -51,13 +79,19 @@ const defaultFoods = [
 ]
 
 let foods = defaultFoods
+let categories = defaultCategories
 
 function reset () {
   foods = [...defaultFoods]
+  categories = [...defaultCategories]
+}
+
+function getCategories () {
+  return Promise.resolve(categories)
 }
 
 function getFoods () {
-  return foods
+  return Promise.resolve(foods)
 }
 
 function getFoodById (id) {
