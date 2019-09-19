@@ -53,3 +53,20 @@ test('db.getFoodsByCategory returns an array of foods by category', () => {
       expect(actual).toBe(expected)
     })
 })
+
+test('db.getFoodById returns a single object', () => {
+  const id = 1
+
+  const foodItem = {
+    id: 1,
+    name: 'Lamb',
+    category: 'Meat',
+    carbonValue: 20.85,
+    waterUsage: 8763
+  }
+
+  return db.getFoodById(id, testDb)
+    .then(food => {
+      expect(food.name).toBe(foodItem.name)
+    })
+})
