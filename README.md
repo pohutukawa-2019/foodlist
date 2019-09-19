@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/pohutukawa-2019/foodlist.svg?style=svg)](https://circleci.com/gh/pohutukawa-2019/foodlist)
+
 # Food List
 
 You will find the developer documentation in the [wiki](https://github.com/pohutukawa-2019/foodlist/wiki).
