@@ -1,6 +1,13 @@
 import foodsReducer from '../../../client/reducers/foods'
 
 describe('foods reducer tests', () => {
+  it('NO_MATCH returns state unchanged', () => {
+    const currentState = [{ id: 13, name: 'Rice', category_id: 3, waterUsage: 3400, carbonOutput: 2.08 }]
+    const action = { type: 'NO_MATCH' }
+    const newState = foodsReducer(currentState, action)
+    expect(newState).toBe(currentState)
+  })
+
   it('GET_FOOD_SUCCESS returns a list of foods', () => {
     const currentState = []
     const action = {
