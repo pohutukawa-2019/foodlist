@@ -19,7 +19,7 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return deleteWaterUsageTable()
-  .then(recreateOriginalWaterUsageTable)
+    .then(recreateOriginalWaterUsageTable)
 
   function deleteWaterUsageTable () {
     return knex.schema.dropTableIfExists('water_usages')
