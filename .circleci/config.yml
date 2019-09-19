@@ -1,27 +1,35 @@
-version: 2.0
+version: 2.1
+orbs:
+  node: circleci/node@1.6
 jobs:
   build:
     branches:
       only:
         - dev
         - master
-    docker:
-      - image: circleci/node:10.6
+    executor:
+      name: 'node/default',
+      tag: '10.6'
     steps:
-        - checkout
-        - run: npm install
-        - run: npm run lint
-        - run: npm run build
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm run lint
+            - run: npm run build
   test:
     branches:
       only:
         - dev
         - master
-    docker:
-      - image: circleci/node:10.6-browsers
+    executor:
+      name: 'node/default',
+      tag: '10.6'
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
-    steps:
-        - checkout
-        - run: npm install
-        - run: npm test
