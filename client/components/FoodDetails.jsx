@@ -1,14 +1,15 @@
 import React from 'react'
 
-const details = {
-  name: 'Turkey',
-  category: 'meat',
-  carbon_output: 403,
-  water_usage: 52
-}
+// const details = {
+//   name: 'Turkey',
+//   category: 'meat',
+//   carbon_output: 403,
+//   water_usage: 52
+// }
 
 export default function FoodDetails (props) {
-  const foodDetails = props.foodDetails || details
+  const foodDetails = props.foodDetails
+  // || details
 
   const classes = 'food-details '
 
