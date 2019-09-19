@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@1.6
+  heroku: circleci/heroku@0.0.8
 jobs:
   build:
     branches:
@@ -33,3 +34,13 @@ jobs:
             - run: npm test
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
+  deploy:
+    branches:
+      only:
+        - master
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+        only-branch: master
