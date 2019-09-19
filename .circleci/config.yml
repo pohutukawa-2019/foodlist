@@ -32,8 +32,8 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-        only-branch: master
-        app-name: pohutukawa-2019-foodlist
+          only-branch: master
+          app-name: pohutukawa-2019-foodlist
 workflows:
   version: 2
   default:
