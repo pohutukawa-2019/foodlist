@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/pohutukawa-2019/foodlist/tree/dev.svg?style=svg)](https://circleci.com/gh/pohutukawa-2019/foodlist/tree/dev)
+[![CircleCI](https://circleci.com/gh/pohutukawa-2019/foodlist/tree/master.svg?style=svg)](https://circleci.com/gh/pohutukawa-2019/foodlist/tree/master)
 
 # Food List
 
