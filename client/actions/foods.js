@@ -25,3 +25,33 @@ export function getFoods () {
       .catch(err => dispatch(error(err.message)))
   }
 }
+
+export function getCategoryPending () {
+  return {
+    type: 'GET_CATEGORY_PENDING'
+  }
+}
+
+export function getCategorySuccess (category) {
+  return {
+    type: 'GET_CATEGORY_SUCCESS',
+    category
+  }
+}
+
+export function getCategoryError (message) {
+  return {
+    type: 'ERROR',
+    message
+  }
+}
+
+export function getCategory (categoryName) {
+  return dispatch => {
+    dispatch(getCategoryPending())
+    request
+      .get(`/api/v1/foods/category/${categoryName}`)
+      .then(res => dispatch(getCategorySuccess(res.body)))
+      .catch(err => dispatch(getCategoryError(err.message)))
+  }
+}
