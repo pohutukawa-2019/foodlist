@@ -14,7 +14,17 @@ function getFoodsByCategory (categoryName, db = connection) {
     .where('categories.name', categoryName)
 }
 
+function getFoodById (id, db = connection) {
+  return db('foods')
+    .join('carbon_outputs', 'carbon_outputs.food_id', '=', 'foods.id')
+    .join('water_usages', 'water_usages.food_id', '=', 'foods.id')
+    .join('categories', 'category_id', '=', 'categories.id')
+    .select('foods.id', 'foods.name', 'categories.name as category', 'carbon_outputs.value as carbonValue', 'water_usages.value as waterUsage')
+    .where('foods.id', id).first()
+}
+
 module.exports = {
   getFoods,
+  getFoodById,
   getFoodsByCategory
 }
