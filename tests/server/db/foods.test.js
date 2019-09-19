@@ -10,14 +10,35 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-test('db.getFoods returns an array of 27 foods', () => {
-  expect.assertions(1)
-
-  const expected = 27
-
-  return db.getFoods(testDb)
-    .then(foods => {
-      const actual = foods.length
-      expect(actual).toBe(expected)
-    })
+describe('db.getFoods tests', () => {
+  it('returns an array of 27 foods', () => {
+    expect.assertions(1)
+  
+    const expected = 27
+  
+    return db.getFoods(testDb)
+      .then(foods => {
+        const actual = foods.length
+        expect(actual).toBe(expected)
+      })
+  })
+  
+  it('returns waterUsage', () => {
+    return db.getFoods(testDb)
+      .then(foods => {
+        const actual = foods
+        expect(actual[0].waterUsage).toBeTruthy()
+        expect(actual[0].waterUsage).not.toBeNull()
+      })
+  })
+  
+  it('returns carbonOutput', () => {
+    return db.getFoods(testDb)
+      .then(foods => {
+        const actual = foods
+        expect(actual[0].carbonOutput).toBeTruthy()
+        expect(actual[0].carbonOutput).not.toBeNull()
+      })
+  })
+  
 })
