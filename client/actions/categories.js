@@ -1,3 +1,5 @@
+import request from 'superagent'
+
 export function getCategoriesPending () {
   return {
     type: 'GET_CATEGORIES_PENDING'
@@ -24,11 +26,10 @@ export function getCategories (categories) {
     return request 
       .get(`api/v1/categories/${categories}`)
       .then(res =>{
-      dispatch(getCategoriesSuccess(res.body))
-    })
+        dispatch(getCategoriesSuccess(res.body))
+      })
       .catch(err =>{
         dispatch(getCategoriesError(err.message))
       })
-    
   }
 }
