@@ -1,8 +1,4 @@
 version: 2.1
-  branches:
-    only:
-      - dev
-      - master
 jobs:
   build:
     branches:
