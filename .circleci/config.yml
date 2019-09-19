@@ -1,0 +1,27 @@
+version: 2.0
+jobs:
+  build:
+    branches:
+      only:
+        - dev
+        - master
+    docker:
+      - image: circleci/node:10.6
+    steps:
+        - checkout
+        - run: npm install
+        - run: npm run lint
+        - run: npm run build
+  test:
+    branches:
+      only:
+        - dev
+        - master
+    docker:
+      - image: circleci/node:10.6-browsers
+    environment:
+      CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+        - checkout
+        - run: npm install
+        - run: npm test

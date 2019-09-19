@@ -23,12 +23,12 @@ export function getCategoriesError (error) {
 export function getCategories (categories) {
   return (dispatch) => {
     dispatch(getCategoriesPending())
-    return request 
+    return request
       .get(`api/v1/categories/${categories}`)
-      .then(res =>{
+      .then(res => {
         dispatch(getCategoriesSuccess(res.body))
       })
-      .catch(err =>{
+      .catch(err => {
         dispatch(getCategoriesError(err.message))
       })
   }
