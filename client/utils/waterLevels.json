@@ -1,0 +1,18 @@
+{
+  "Extreme": {
+    "name": "Extreme",
+    "color": "midnightblue"
+  },
+  "High": {
+    "name": "High",
+    "color": "mediumblue"
+  },
+  "Medium": {
+    "name": "Medium",
+    "color": "blue"
+  },
+  "Low": {
+    "name": "Low",
+    "color": "lightblue"
+  }
+}
