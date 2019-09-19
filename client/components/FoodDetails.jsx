@@ -1,23 +1,24 @@
 import React from 'react'
 
+const details = {
+  name: 'Turkey',
+  category: 'meat',
+  carbon_output: 403,
+  water_usage: 52
+}
+
 export default function FoodDetails (props) {
-  const { isVisible, hideDetails } = props
-  const classes = 'food-details ' + (isVisible ? 'visible' : 'hidden')
-  const foodDetails = {
-    name: 'Turkey',
-    category: 'meat',
-    carbon_output: 403,
-    water_usage: 52
-  }
+  const foodDetails = props.foodDetails || details
+
+  const classes = 'food-details '
 
   return (
     <div className={classes}>
       <h2>Details</h2>
-      <p>{foodDetails.name}</p>
-      <p>{foodDetails.category}</p>
-      <p>{foodDetails.carbon_output}</p>
-      <p>{foodDetails.water_usage}</p>
-      <a href="#" onClick={hideDetails}>Close</a>
+      <p data-test="name">{foodDetails.name}</p>
+      <p data-test="category">{foodDetails.category}</p>
+      <p data-test="carbon">{foodDetails.carbon_output}</p>
+      <p data-test="water">{foodDetails.water_usage}</p>
     </div>
   )
 }
