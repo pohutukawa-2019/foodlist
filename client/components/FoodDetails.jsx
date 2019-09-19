@@ -1,5 +1,15 @@
 import React from 'react'
 
+// class FoodDetails extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>Hello</h1>
+//       </div>
+//     )
+//   }
+// }
+
 const details = {
   name: 'Turkey',
   category: 'meat',
