@@ -8,7 +8,7 @@ jobs:
         - dev
         - master
     executor:
-      name: 'node/default',
+      name: node/default,
       tag: '10.6'
     steps:
       - checkout
@@ -23,7 +23,7 @@ jobs:
         - dev
         - master
     executor:
-      name: 'node/default',
+      name: node/default,
       tag: '10.6'
     steps:
       - checkout
