@@ -21,3 +21,21 @@ test('db.getFoods returns an array of 27 foods', () => {
       expect(actual).toBe(expected)
     })
 })
+
+test('db.getFoods returns waterUsage', () => {
+  return db.getFoods(testDb)
+    .then(foods => {
+      const actual = foods
+      expect(actual[0].waterUsage).toBeTruthy()
+      expect(actual[0].waterUsage).not.toBeNull()
+    })
+})
+
+test('db.getFoods returns carbonOutput', () => {
+  return db.getFoods(testDb)
+    .then(foods => {
+      const actual = foods
+      expect(actual[0].carbonOutput).toBeTruthy()
+      expect(actual[0].carbonOutput).not.toBeNull()
+    })
+})
