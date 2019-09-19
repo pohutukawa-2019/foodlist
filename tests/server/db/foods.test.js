@@ -21,3 +21,15 @@ test('db.getFoods returns an array of 27 foods', () => {
       expect(actual).toBe(expected)
     })
 })
+
+test('db.getFoodsByCategory returns an array of foods by category', () => {
+  expect.assertions(1)
+
+  const expected = 6
+
+  return db.getFoodsByCategory('Fruits', testDb)
+    .then(foods => {
+      const actual = foods.length
+      expect(actual).toBe(expected)
+    })
+})
