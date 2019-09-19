@@ -39,5 +39,23 @@ workflows:
   default:
     jobs:
       - build
-      - test
-      - deploy
+          filters:
+            branches:
+              only:
+                - dev
+                - master
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - dev
+                - master
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+
