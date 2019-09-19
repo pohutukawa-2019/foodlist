@@ -21,3 +21,21 @@ test('db.getFoods returns an array of 27 foods', () => {
       expect(actual).toBe(expected)
     })
 })
+
+test('db.getFoodById returns a single object', () => {
+  
+  const id = 1
+
+  const foodItem = {
+    id: 1,
+    name: 'Lamb',
+    category: 'Meat',
+    carbon_value: 20.85,
+    water_usage: 8763
+  }
+
+  return db.getFoodById(id, testDb)
+    .then(foods => {
+      expect(foods.name).toBe(foodItem.name)
+    })
+})
