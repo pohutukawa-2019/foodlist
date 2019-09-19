@@ -9,10 +9,17 @@
   "scripts": {
     "lint": "eslint .",
     "build": "webpack --config client/webpack.config.js",
+<<<<<<< HEAD
     "server": "run-s build start",
     "start": "node .",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",
+=======
+    "server": "node .",
+    "start": "run-s build server",
+    "test": "jest --verbose",
+    "test:watch": "jest --watchAll",
+>>>>>>> consolidate ci workflows
     "dev": "run-p dev:server dev:client",
     "dev:server": "nodemon .",
     "dev:client": "webpack --config client/webpack.config.js --watch",
