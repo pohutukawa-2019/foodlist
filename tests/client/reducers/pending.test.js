@@ -1,6 +1,6 @@
 import pendingReducer from '../../../client/reducers/pending'
 
-describe('pending reducer tests', () => {
+describe('pending reducer category tests', () => {
   it('GET_CATEGORIES_SUCCESS action returns false', () => {
     const testState = false
     const testAction = {
@@ -32,5 +32,43 @@ describe('pending reducer tests', () => {
     const actual = pendingReducer(testState, testAction)
 
     expect(actual).toBe(testState)
+  })
+})
+
+describe('pending reducer get food', () => {
+  it('returns false with GET_FOOD_SUCCESS case match', () => {
+    const initialState = false
+    const action = {
+      type: 'GET_FOOD_SUCCESS'
+    }
+    const newState = pendingReducer(initialState, action)
+    expect(newState).toBe(false)
+  })
+  it('returns true with GET_FOOD_PENDING case match', () => {
+    const initialState = false
+    const action = {
+      type: 'GET_FOOD_PENDING'
+    }
+    const newState = pendingReducer(initialState, action)
+    expect(newState).toBe(true)
+  })
+})
+
+describe('pending reducer get food details', () => {
+  it('returns true with GET_FOOD_DETAILS_PENDING case match', () => {
+    const initialState = false
+    const action = {
+      type: 'GET_FOOD_DETAILS_PENDING'
+    }
+    const newState = pendingReducer(initialState, action)
+    expect(newState).toBe(true)
+  })
+  it('returns false with GET_FOOD_DETAILS_SUCCESS case match', () => {
+    const initialState = false
+    const action = {
+      type: 'GET_FOOD_DETAILS_SUCCESS'
+    }
+    const newState = pendingReducer(initialState, action)
+    expect(newState).toBe(false)
   })
 })
