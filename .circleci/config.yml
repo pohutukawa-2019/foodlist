@@ -33,15 +33,11 @@ jobs:
       - heroku/install
       - heroku/deploy-via-git:
         only-branch: master
+        app-name: pohutukawa-2019-foodlist
 workflows:
   version: 2
-  build_code:
-    jobs:
-      - build
-  run_test:
+  default:
     jobs:
       - build
       - test
-  deploy_app:
-    jobs:
       - deploy
