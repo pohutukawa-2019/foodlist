@@ -36,23 +36,12 @@ jobs:
 workflows:
   version: 2
   build_code:
-    branches:
-      only:
-        - dev
-        - master
     jobs:
       - build
   run_test:
-    branches:
-      only:
-        - dev
-        - master
     jobs:
       - build
       - test
   deploy_app:
-    branches:
-      only:
-        - master
     jobs:
       - deploy
