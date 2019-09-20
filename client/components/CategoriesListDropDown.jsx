@@ -13,8 +13,6 @@ export default class CategoriesListDropDown extends React.Component {
                 key={category}
                 text={category}
               />)}
-            {/* <Dropdown.Divider /> */}
-            {/* <Dropdown.Item as={Link} to='/new' Add Species></Dropdown.Item> */}
           </Dropdown.Menu>
         </Dropdown>
       </div>
