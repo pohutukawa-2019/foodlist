@@ -42,31 +42,35 @@ describe('db.getFoods tests', () => {
   })
 })
 
-test('db.getFoodsByCategory returns an array of foods by category', () => {
-  expect.assertions(1)
+describe('db.getFoodsByCategory returns foods by category', () => {
+  it('returns an array of foods by category', () => {
+    expect.assertions(1)
 
-  const expected = 6
+    const expected = 6
 
-  return db.getFoodsByCategory('Fruits', testDb)
-    .then(foods => {
-      const actual = foods.length
-      expect(actual).toBe(expected)
-    })
+    return db.getFoodsByCategory('Fruits', testDb)
+      .then(foods => {
+        const actual = foods.length
+        expect(actual).toBe(expected)
+      })
+  })
 })
 
-test('db.getFoodById returns a single object', () => {
-  const id = 1
+describe('db.getFoodById returns a single object', () => {
+  it('returns a single food object by id', () => {
+    const id = 1
 
-  const foodItem = {
-    id: 1,
-    name: 'Lamb',
-    category: 'Meat',
-    carbonValue: 20.85,
-    waterUsage: 8763
-  }
+    const foodItem = {
+      id: 1,
+      name: 'Lamb',
+      category: 'Meat',
+      carbonValue: 20.85,
+      waterUsage: 8763
+    }
 
-  return db.getFoodById(id, testDb)
-    .then(food => {
-      expect(food.name).toBe(foodItem.name)
-    })
+    return db.getFoodById(id, testDb)
+      .then(food => {
+        expect(food.name).toBe(foodItem.name)
+      })
+  })
 })
