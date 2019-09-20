@@ -3,22 +3,20 @@ import { getFoodDetails } from '../actions'
 import { connect } from 'http2'
 
 class FoodDetails extends React.Component {
-  state = {
-    name: '',
-    category: '',
-    carbon_output: '',
-    water_usage: ''
-  }
 
   componentDidMount () {
-    const id = this.props.post.id || this.props.match.params.id
+    const id = this.props.food.id || this.props.match.params.id
     this.props.dispatch(getFoodDetails(id))
   }
 
   render () {
     return (
       <div>
-        <h1>Hello</h1>
+        <h2>Food Details</h2>
+        <p>{this.props.foodDetails.name}</p>
+        <p>{this.props.foodDetails.category}</p>
+        <p>{this.props.foodDetails.carbon_output}</p>
+        <p>{this.props.foodDetails.water_usage}</p>
       </div>
     )
   }
@@ -26,10 +24,7 @@ class FoodDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.name,
-    category: state.category,
-    carbon_output: state.carbon_output,
-    water_usage: state.water_usage
+    foodDetails: state.foodDetails.foodDetails
   }
 }
 
