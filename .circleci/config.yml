@@ -1,27 +1,44 @@
-version: 2.0
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+  heroku: circleci/heroku@0.0.8
 jobs:
-  build:
-    branches:
-      only:
-        - dev
-        - master
-    docker:
-      - image: circleci/node:10.6
+  build-test:
+    executor:
+      name: node/default
+      tag: '10.6'
     steps:
-        - checkout
-        - run: npm install
-        - run: npm run lint
-        - run: npm run build
-  test:
-    branches:
-      only:
-        - dev
-        - master
-    docker:
-      - image: circleci/node:10.6-browsers
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm run build
+            - run: npm run lint
+            - run: npm test
     environment:
       CHROME_BIN: "/usr/bin/google-chrome"
+  deploy:
+    executor: heroku/default
     steps:
-        - checkout
-        - run: npm install
-        - run: npm test
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          only-branch: master
+          app-name: pohutukawa-2019-foodlist
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build-test:
+          filters:
+            branches:
+              only:
+                - dev
+                - master
+      - deploy:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only: master
+
