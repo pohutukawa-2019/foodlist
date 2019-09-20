@@ -2,7 +2,7 @@ import {
   getFoodDetailsError,
   getFoodDetailsPending,
   getFoodDetailsSuccess,
-  fetchFoodDetails,
+  fetchFoodDetails,g
   GET_FOOD_DETAILS_PENDING,
   GET_FOOD_DETAILS_SUCCESS,
   ERROR
