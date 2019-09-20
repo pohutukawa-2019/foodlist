@@ -17,7 +17,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={FoodList} />
               <Route path={ '/details/:id' } component={FoodDetails} />
-              <Route path='/new' component={AddFood} />
+              <Route path= '/new' component={AddFood} />
             </Switch>
           </Container>
         </>
