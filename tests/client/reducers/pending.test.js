@@ -35,6 +35,41 @@ describe('pending reducer category tests', () => {
   })
 })
 
+describe('pending reducer category tests', () => {
+  it('GET_CATEGORY_SUCCESS action returns false', () => {
+    const testState = false
+    const testAction = {
+      type: 'GET_CATEGORY_SUCCESS'
+    }
+
+    const actual = pendingReducer(testState, testAction)
+
+    expect(actual).toBe(false)
+  })
+
+  it('GET_CATEGORY_PENDING action returns true', () => {
+    const testState = true
+    const testAction = {
+      type: 'GET_CATEGORY_PENDING'
+    }
+
+    const actual = pendingReducer(testState, testAction)
+
+    expect(actual).toBe(true)
+  })
+
+  it('NO_MATCH action returns state unchanged', () => {
+    const testState = false
+    const testAction = {
+      type: 'NO_MATCH'
+    }
+
+    const actual = pendingReducer(testState, testAction)
+
+    expect(actual).toBe(testState)
+  })
+})
+
 describe('pending reducer get food', () => {
   it('returns false with GET_FOOD_SUCCESS case match', () => {
     const initialState = false
