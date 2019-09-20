@@ -18,5 +18,6 @@ export default class CategoriesListDropDown extends React.Component {
       </div>
 
     )
+    
   }
 }

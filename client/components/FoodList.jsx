@@ -1,4 +1,4 @@
-import React from 'react'
+git addimport React from 'react'
 import { connect } from 'react-redux'
 
 import { getFoods } from '../actions/foods'
