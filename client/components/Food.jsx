@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Food ({ food: { name } }) {
+export default function Food ({ food: { name }, id }) {
   return (
-    <li>{name}</li>
+    <Link to={`/details/${id}`}><li>{name}</li></Link>
   )
 }

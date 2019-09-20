@@ -10,7 +10,7 @@ class FoodList extends React.Component {
   }
 
   render () {
-    const { foods, info: { pending, error } } = this.props
+    const { foods, pending, error } = this.props
 
     if (pending) {
       return <div>LOADING...</div>
@@ -21,7 +21,7 @@ class FoodList extends React.Component {
         {error && <div>{error}</div>}
         <ul>
           {foods.map(food =>
-            <Food key={food.id} food={food} />)}
+            <Food key={`:)${food.id}`} id={food.id} food={food} />)}
         </ul>
       </>
     )
@@ -31,7 +31,8 @@ class FoodList extends React.Component {
 const mapStateToProps = state => {
   return {
     foods: state.foods,
-    info: state.info
+    pending: state.pending,
+    error: state.error
   }
 }
 
