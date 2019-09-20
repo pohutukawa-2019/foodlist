@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react'
 import FoodList from './FoodList'
 import TopMenu from './TopMenu'
 import FoodDetails from './FoodDetails'
+import AddFood from './AddFood'
 
 class App extends React.Component {
   render () {
@@ -15,7 +16,8 @@ class App extends React.Component {
           <Container style={{ marginTop: 75 }}>
             <Switch>
               <Route exact path='/' component={FoodList} />
-              <Route path={ '/details/:id' } component={FoodDetails} />
+              <Route path='/details/:id' component={FoodDetails} />
+              <Route path='/addfood' component={AddFood}/>
             </Switch>
           </Container>
         </>
