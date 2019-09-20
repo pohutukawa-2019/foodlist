@@ -4,6 +4,17 @@ import {
   getCategoryError,
   getCategory
 } from '../../../client/actions/foods'
+import {
+  foods
+} from '../../../client/api/foods'
+
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+
+require('babel-polyfill')
+
+const mockStore = configureMockStore([thunk])
+jest.mock('../../../client/api/foods')
 
 test('getCategoryPending is hit with \'GET_CATEGORY_PENDING\'', () => {
   const action = getCategoryPending()
@@ -37,14 +48,24 @@ test('getCategoryError is hit with \'ERROR\' and returns the error message', () 
   expect(action.message).toBe('this is an error')
 })
 
-// describe('getCategory', () => {
-// it('dispatches getCategoryPending', () => {
-//   const action =
-// })
-
-// it('makes a request to a route determined by the category received as an argument, then dispatches getCategorySuccessed with the response from that route')
-
-// it('dispatches getCategoryError with the error when the response from the route is an error')
-// })
-
-// call mock getCategoryMock
+describe('getCategory', () => {
+  it('makes a request to a route determined by the category received, then dispatches getCategorySuccess with the response from that route', async () => {
+    const store = mockStore()
+    await store.dispatch(getCategory('meat'))
+    const actions = store.getActions()
+    expect(actions.length).toBe(2)
+    expect(actions[0]).toEqual({ type: 'GET_CATEGORY_PENDING' })
+    expect(actions[1]).toEqual({
+      type: 'GET_CATEGORY_SUCCESS',
+      category: foods
+    })
+  })
+  it('returns the error message when an error is hit', async () => {
+    const store = mockStore()
+    await store.dispatch(getCategory('err'))
+    const actions = store.getActions()
+    expect(actions.length).toBe(2)
+    expect(actions[0]).toEqual({ type: 'GET_CATEGORY_PENDING' })
+    expect(actions[1]).toEqual({ type: 'ERROR', message: 'Category does not exist' })
+  })
+})

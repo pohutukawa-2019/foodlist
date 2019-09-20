@@ -11,6 +11,21 @@ export default {
         })
       case '/api/v1/foods/33':
         return Promise.reject(new Error('Fake network error.'))
+      case '/api/v1/foods/category/meat':
+        return Promise.resolve({
+          body: [
+            {
+              id: 1,
+              name: 'Lamb'
+            },
+            {
+              id: 2,
+              name: 'Beef'
+            }
+          ]
+        })
+      case '/api/v1/foods/category/does-not-exist':
+        return Promise.reject(new Error('Fake error'))
     }
   }
 }

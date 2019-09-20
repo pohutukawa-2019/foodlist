@@ -1,6 +1,7 @@
 import request from 'superagent'
 
 import { error } from './error'
+import { getFoodsByCategory } from '../api/foods'
 
 export function getFoodsPending () {
   return {
@@ -49,9 +50,8 @@ export function getCategoryError (message) {
 export function getCategory (categoryName) {
   return dispatch => {
     dispatch(getCategoryPending())
-    request
-      .get(`/api/v1/foods/category/${categoryName}`)
-      .then(res => dispatch(getCategorySuccess(res.body)))
+    return getFoodsByCategory(categoryName)
+      .then(foods => dispatch(getCategorySuccess(foods)))
       .catch(err => dispatch(getCategoryError(err.message)))
   }
 }
