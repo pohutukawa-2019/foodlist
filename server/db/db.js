@@ -27,10 +27,46 @@ function getCategories (db = connection) {
   return db('categories')
     .select()
 }
+// ROUTE TEST NEEDS TO BE WRITTEN
+function addFood (newFood, db = connection) {
+  let testObj
+
+  return db('foods')
+    .insert({ name: newFood.name, category_id: newFood.category_id })
+    .then(id => {
+      const carbonObj = {
+        food_id: id[0],
+        value: newFood.carbonOutput
+      }
+      testObj = carbonObj.food_id
+      return carbonObj
+    })
+    .then((el) => addCarbonOutput(el, db))
+    .then(id => {
+      const waterObj = {
+        food_id: testObj,
+        value: newFood.waterUsage
+      }
+      return waterObj
+    })
+    .then((el) => addWaterUsage(el, db))
+    .then(() => getFoods(db))
+}
+
+function addCarbonOutput (newFoodCarbon, db = connection) {
+  return db('carbon_outputs')
+    .insert(newFoodCarbon)
+}
+
+function addWaterUsage (newFoodWater, db = connection) {
+  return db('water_usages')
+    .insert(newFoodWater)
+}
 
 module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  addFood
 }

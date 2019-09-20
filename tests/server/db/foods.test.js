@@ -70,3 +70,18 @@ test('db.getFoodById returns a single object', () => {
       expect(food.name).toBe(foodItem.name)
     })
 })
+
+test('db.addFood returns a new food', () => {
+  const newFoodItem = {
+    name: 'DazedAndConfused',
+    category: 'Meat',
+    carbonOutput: 19.76,
+    waterUsage: 420
+  }
+
+  return db.addFood(newFoodItem, testDb)
+    .then(foods => {
+      expect(foods.length).toBe(28)
+      expect(foods[27].name).toBe(newFoodItem.name)
+    })
+})
