@@ -1,25 +1,28 @@
+import waterLevels from './waterLevels.json'
+import carbonLevels from './carbonLevels.json'
+
 export function getWaterLevel (waterUsage) {
   switch (true) {
     case waterUsage > 5000:
-      return 'Extreme'
+      return waterLevels.Extreme
     case waterUsage > 2000:
-      return 'High'
+      return waterLevels.High
     case waterUsage > 500:
-      return 'Medium'
+      return waterLevels.Medium
     default:
-      return 'Low'
+      return waterLevels.Low
   }
 }
 
 export function getCarbonLevel (carbonOutput) {
   switch (true) {
     case carbonOutput > 10:
-      return 'Extreme'
+      return carbonLevels.Extreme
     case carbonOutput > 5:
-      return 'High'
+      return carbonLevels.High
     case carbonOutput > 1:
-      return 'Medium'
+      return carbonLevels.Medium
     default:
-      return 'Low'
+      return carbonLevels.Low
   }
 }
