@@ -1,4 +1,4 @@
-git addimport React from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { getFoods } from '../actions/foods'
@@ -26,7 +26,7 @@ class FoodList extends React.Component {
         {error && <div>{error}</div>}
         <ul>
           {foods.map(food =>
-            <Food key={`:)${food.id}`} id={food.id} food={food} />)}
+            <Food key={`${food.id}`} id={food.id} food={food} />)}
         </ul>
       </>
     )

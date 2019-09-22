@@ -1,8 +1,8 @@
-import request from 'superagent'
+import { error } from './error'
+import makeRequest from '../api/requestor'
 
-export const GET_FOOD_DETAILS_PENDING = 'GET_FOOD_DETAILS_PENDING '
+export const GET_FOOD_DETAILS_PENDING = 'GET_FOOD_DETAILS_PENDING'
 export const GET_FOOD_DETAILS_SUCCESS = 'GET_FOOD_DETAILS_SUCCESS'
-export const ERROR = 'ERROR'
 
 export const getFoodDetailsPending = () => {
   return {
@@ -17,23 +17,15 @@ export const getFoodDetailsSuccess = (foodDetails) => {
   }
 }
 
-export const getFoodDetailsError = (err) => {
-  return {
-    type: ERROR,
-    message: err
-  }
-}
-
-export function fetchFoodDetails () {
+export function getFoodDetails (id) {
   return (dispatch) => {
     dispatch(getFoodDetailsPending())
-    return request
-      .get('api/v1/getFood/:id')
+    return makeRequest(`api/v1/getFood/${id}`)
       .then(res => {
         dispatch(getFoodDetailsSuccess(res.body))
       })
       .catch(err => {
-        dispatch(getFoodDetailsError(err.message))
+        dispatch(error(err.message))
       })
   }
 }
