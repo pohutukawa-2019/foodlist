@@ -7,3 +7,10 @@ export function getFoodById (foodId) {
     .get(`${foodPath}/${foodId}`)
     .catch(() => { throw new Error('Error accessing foods api.') })
 }
+
+export function appendFood (food) {
+  return request
+    .post(`${foodPath}/`)
+    .send(food)
+    .then(response => response.body)
+}
