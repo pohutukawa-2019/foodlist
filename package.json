@@ -34,7 +34,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./client/test-setup.js"
+      "./client/test/setup.js"
     ]
   },
   "dependencies": {
