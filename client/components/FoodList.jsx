@@ -6,7 +6,12 @@ import Food from './Food'
 
 class FoodList extends React.Component {
   componentDidMount () {
-    this.props.getFood()
+    const { category } = this.props.match.params
+    if (category) {
+      this.props.getCategory(category)
+    } else {
+      this.props.getFoods()
+    }
   }
 
   render () {
@@ -38,7 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFood: () => dispatch(getFoods())
+    getFoods: () => dispatch(getFoods()),
+    getCategory: () => {} // TODO: dispatch(getCategory()) once action creator exists
   }
 }
 

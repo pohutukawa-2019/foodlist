@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-
   development: {
     client: 'sqlite3',
     connection: {
@@ -26,14 +25,14 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE,
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      directory: path.join(__dirname, 'migrations')
     }
   }
-
 }
