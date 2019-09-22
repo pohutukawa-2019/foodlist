@@ -1,5 +1,5 @@
 const env = require('./test-environment')
-const db = require('../../../server/db/db')
+const db = require('./db')
 
 let testDb = null
 
@@ -10,8 +10,8 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-describe('db.getCategories tests', () => {
-  it('returns and array of 6 categories', () => {
+describe('db.getCategories', () => {
+  it('returns and array of categories', () => {
     expect.assertions(1)
 
     const expected = 6

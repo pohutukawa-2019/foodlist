@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-
   development: {
     client: 'sqlite3',
     connection: {
@@ -36,5 +35,4 @@ module.exports = {
       directory: path.join(__dirname, 'migrations')
     }
   }
-
 }
