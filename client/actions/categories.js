@@ -20,11 +20,11 @@ export function getCategoriesError (error) {
   }
 }
 
-export function getCategories (categories) {
+export function getCategories () {
   return (dispatch) => {
     dispatch(getCategoriesPending())
     return request
-      .get(`api/v1/categories/${categories}`)
+      .get('api/v1/categories/')
       .then(res => {
         dispatch(getCategoriesSuccess(res.body))
       })
