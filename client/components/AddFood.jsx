@@ -1,11 +1,13 @@
 import React from 'react'
 
+import { appendFood } from '../api/foods'
+
 export default class AddFood extends React.Component {
   state = {
     name: '',
     carbonOutput: '',
     waterUsage: '',
-    category: ''
+    categoryId: ''
   }
 
   handleChange = (event) => {
@@ -16,45 +18,53 @@ export default class AddFood extends React.Component {
 
   handleDropdown = (event) => {
     this.setState({
-      category: event.target.value
+      categoryId: event.target.value
     })
   }
 
-  handleAdd = (event) => {
-    console.log('handleAdd placeholder')
+  handleAdd = () => {
+    appendFood(this.state)
+      .then(() => this.refreshList())
+  }
+
+  refreshList = (err) => {
+    this.setState({
+      error: err,
+      addFoodVisible: false
+    })
   }
 
   render () {
     const { name, carbonOutput, waterUsage } = this.state
     return (
       <div>
-        <div style={{ marginTop: '100px' }}>
-          <p>
-            <input name='name'
-              placeholder='Name' value={name}
-              onChange={this.handleChange} />
-          </p>
-          <p>
-            <input name='carbonOutput'
-              value={carbonOutput}
-              placeholder='Carbon Output' 
-              onChange={this.handleChange} />
-          </p>
-          <p>
-            <input name='waterUsage'
-              placeholder='Water Usage' value={waterUsage}
-              onChange={this.handleChange} />
-          </p>
-          <p><label>Food Group/Category</label><select id = "category" onChange={this.handleDropdown}>
-            <option value="fruits">Fruits</option>
-            <option value="vegetables">Vegetables</option>
-            <option value="grains-beans-and-legumes">Grains, Beans and Legumes</option>
-            <option value="fish">Fish</option>
-            <option value="meat">Meat</option>
-            <option value="animal-byproducts">Animal Byproducts</option>
+        <p><label>Name: </label>
+          <input name='name'
+            placeholder='Name' value={name}
+            onChange={this.handleChange} />
+        </p>
+        <p><label>Carbon Output: </label>
+          <input name='carbonOutput'
+            value={carbonOutput}
+            placeholder='Carbon Output' 
+            onChange={this.handleChange} />
+        </p>
+        <p><label>Water Usage: </label>
+          <input name='waterUsage'
+            placeholder='Water Usage' value={waterUsage}
+            onChange={this.handleChange} />
+        </p>
+        <p><label>Food Group/Category: </label>
+          <select id = "category" onChange={this.handleDropdown}>
+            <option value="" defaultValue hidden>Choose food group</option>
+            <option value="1">Fruits</option>
+            <option value="2">Vegetables</option>
+            <option value="3">Grains, Beans and Legumes</option>
+            <option value="4">Fish</option>
+            <option value="5">Meat</option>
+            <option value="6">Animal Byproducts</option>
           </select></p>
-          <button type='button' onClick={this.handleAdd}>Add Food</button>
-        </div>
+        <button type='button' onClick={this.handleAdd}>Add Food</button>
       </div>
     )
   }
