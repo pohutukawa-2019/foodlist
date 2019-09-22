@@ -1,5 +1,7 @@
 require('babel-polyfill')
 
+const request = require('supertest')
+
 const server = require('../server')
 const db = require('../db/db')
 
@@ -11,9 +13,6 @@ beforeEach(() => {
 
 describe('Category routes', () => {
   it('GET /categories returns a list of catagories', () => {
-    jest.unmock('superagent')
-    const request = require('supertest')
-
     const expected = 6
 
     return request(server)
