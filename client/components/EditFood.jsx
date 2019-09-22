@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Dropdown } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 export default class EditFood extends React.Component {
+  // expecting mapStateToProps, hardcoded until this is implemented
   state = {
     name: this.props.name || 'Orange',
     food_group: this.props.food_group || 'fruits',
@@ -14,6 +15,35 @@ export default class EditFood extends React.Component {
       [evt.target.name]: evt.target.value
     })
   }
+
+  dropdownHandler = (evt) => {
+    this.setState({
+      food_group: evt.target.value
+    })
+  }
+
+  // capitalize = (string) => {
+  //   return string.charAt(0).toUpperCase() + string.slice(1)
+  // }
+
+  // hardcoded, needs to pull categories from the database
+  options = [
+    {
+      key: 'fruits',
+      text: 'fruits',
+      value: 'fruits'
+    },
+    {
+      key: 'meats',
+      text: 'meats',
+      value: 'meats'
+    },
+    {
+      key: 'dairy',
+      text: 'dairy',
+      value: 'dairy'
+    }
+  ]
 
   render () {
     return (
@@ -48,18 +78,18 @@ export default class EditFood extends React.Component {
               placeholder='Enter water usage here'
               required
             />
+            <Form.Dropdown
+              label='Food Groups'
+              name='food_group'
+              text={this.state.food_group}
+              options={this.options}
+              onChange={this.dropdownHandler}
+              selection
+              required
+              closeOnChange
+            >
+            </Form.Dropdown>
           </Form.Group>
-          <Dropdown label='Food Groups' text={this.state.food_group} selection required>
-            <Dropdown.Menu>
-              <Dropdown.Item text='Fruits'/>
-              <Dropdown.Item text='Meat'/>
-              <Dropdown.Item text='Vegetables'/>
-              <Dropdown.Item text='Dairy'/>
-              <Dropdown.Item text='Preserved'/>
-              <Dropdown.Item text='Bread'/>
-            </Dropdown.Menu>
-          </Dropdown>
-
           <Form.Group>
             <Form.Button>Submit</Form.Button>
           </Form.Group>
