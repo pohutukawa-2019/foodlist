@@ -1,6 +1,7 @@
 import { GET_CATEGORIES_PENDING, GET_CATEGORIES_SUCCESS } from '../actions/categories'
 import { GET_FOOD_PENDING, GET_FOOD_SUCCESS } from '../actions/foods'
 // import { GET_FOOD_DETAILS_PENDING, GET_FOOD_DETAILS_SUCCESS } from '../actions/foods'
+// import { GET_CATEGORY_PENDING, GET_CATEGORY_SUCCESS } from '../actions/
 
 export default function (pending = false, action) {
   switch (action.type) {
