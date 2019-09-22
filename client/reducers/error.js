@@ -1,6 +1,8 @@
+import ERROR from '../actions/error'
+
 export default function (error = null, action) {
   switch (action.type) {
-    case 'ERROR':
+    case ERROR:
       return action.message
 
     default:
