@@ -1,9 +1,12 @@
+/**
+ * @jest-environment node
+ */
+// The previous docblock silences annoying react warnings during test runs
 import React from 'react'
-import { Router } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { render } from 'enzyme'
-import { createBrowserHistory } from 'history'
 
 import FoodList from '../../../client/components/FoodList'
 
@@ -244,15 +247,14 @@ describe('FoodList Component Tests', () => {
       waterUsage: 1612
     }
   ]
-  const history = createBrowserHistory()
 
   it('<FoodList> renders an <a> for every food', () => {
     const mockStore = configureStore()({ foods })
     const wrapper = render(
       <Provider store={mockStore}>
-        <Router history={history}>
+        <MemoryRouter>
           <FoodList />
-        </Router>
+        </MemoryRouter>
       </Provider>
     )
     expect(wrapper.find('a').length).toBe(foods.length)
@@ -262,9 +264,9 @@ describe('FoodList Component Tests', () => {
     const mockStore = configureStore()({ foods: fruits })
     const wrapper = render(
       <Provider store={mockStore}>
-        <Router history={history}>
+        <MemoryRouter>
           <FoodList />
-        </Router>
+        </MemoryRouter>
       </Provider>
     )
     expect(wrapper.find('a').length).toBe(fruits.length)
