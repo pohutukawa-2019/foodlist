@@ -5,8 +5,8 @@ export default class EditFood extends React.Component {
   // expecting mapStateToProps, hardcoded until this is implemented
   state = {
     name: this.props.name || 'Orange',
-    food_group: this.props.food_group || 'fruits',
-    carbon_output: this.props.carbon_output || 101,
+    category: this.props.category || 'fruits',
+    CO2_output: this.props.CO2_output || 101,
     water_usage: this.props.water_usage || 88
   }
 
@@ -16,15 +16,15 @@ export default class EditFood extends React.Component {
     })
   }
 
-  dropdownHandler = (evt) => {
+  dropdownHandler = (evt, result) => {
     this.setState({
-      food_group: evt.target.value
+      category: result.value
     })
   }
 
-  // capitalize = (string) => {
-  //   return string.charAt(0).toUpperCase() + string.slice(1)
-  // }
+  capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
 
   // hardcoded, needs to pull categories from the database
   options = [
@@ -61,9 +61,9 @@ export default class EditFood extends React.Component {
               required
             />
             <Form.Input
-              value={this.state.carbon_output}
+              value={this.state.CO2_output}
               onChange={this.onChangeHandler}
-              name='carbon_output'
+              name='CO2_output'
               type='number'
               label='CO2 Output'
               placeholder='Enter CO2 output here'
@@ -79,13 +79,15 @@ export default class EditFood extends React.Component {
               required
             />
             <Form.Dropdown
-              label='Food Groups'
-              name='food_group'
-              text={this.state.food_group}
+              label='Category'
+              name='category'
+              placeholder='Please select a category'
+              text={this.capitalize(this.state.category)}
               options={this.options}
               onChange={this.dropdownHandler}
               selection
               required
+              clearable
               closeOnChange
             >
             </Form.Dropdown>
