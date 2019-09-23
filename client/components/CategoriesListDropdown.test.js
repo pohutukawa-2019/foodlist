@@ -1,12 +1,38 @@
-// import { categories } from './CategoriesListDropdown'
+/**
+ * @jest-environment node
+ */
+// The previous docblock silences annoying react warnings during test runs
 
-const categories = ['Fruit', 'Vegetables', 'Meat']
+import React from 'react'
+import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+import { render } from 'enzyme'
 
-test('Categories List to return first category', () => {
-  expect(categories[0]).toBe('Fruit')
+import CategoriesListDropDown from './CategoriesListDropdown'
+import { categories } from '../test/data'
+
+describe('<CategoriesListDropDown>', () => {
+  it('renders a dropdown list with every category', () => {
+    const mockStore = configureStore()({ categories })
+    const wrapper = render(
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <CategoriesListDropDown />
+        </MemoryRouter>
+      </Provider>
+    )
+    expect(wrapper.find('[role="option"]').length).toBe(categories.length)
+  })
 })
 
-test('Categories List to return second category', () => {
-  const categories = ['Fruit', 'Vegetables', 'Meat']
-  expect(categories[1]).toBe('Vegetables')
-})
+// const categories = ['Fruit', 'Vegetables', 'Meat']
+
+// test('Categories List to return first category', () => {
+//   expect(categories[0]).toBe('Fruit')
+// })
+
+// test('Categories List to return second category', () => {
+//   const categories = ['Fruit', 'Vegetables', 'Meat']
+//   expect(categories[1]).toBe('Vegetables')
+// })

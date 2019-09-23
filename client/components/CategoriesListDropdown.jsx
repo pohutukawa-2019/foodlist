@@ -1,15 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { Dropdown } from 'semantic-ui-react'
 
-export default class CategoriesListDropdown extends React.Component {
+class CategoriesListDropdown extends React.Component {
   render () {
-    const categories = ['Fruit', 'Vegetables', 'Meat']
     return (
       <div>
-        <Dropdown borderless color='green' fixed='top' inverted>
+        <Dropdown borderless='true' color='green' fixed='top' inverted='true'>
           <Dropdown.Menu>
-            {categories.map(category =>
+            {this.props.categories.map(category =>
               <Dropdown.Item
                 key={category}
                 text={category}
@@ -20,3 +20,22 @@ export default class CategoriesListDropdown extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    categories: [
+      'Fruit', 
+      'Vegetables', 
+      'Grains, beans, and legumes', 
+      'Fish', 'Meat', 'Animal Byproducts'
+    ] // TODO: change out for values from store once they exist
+  }
+}
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+
+//   }
+// }
+
+export default connect(mapStateToProps)(CategoriesListDropdown)
