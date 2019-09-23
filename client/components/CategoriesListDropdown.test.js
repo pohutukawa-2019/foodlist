@@ -25,14 +25,3 @@ describe('<CategoriesListDropDown>', () => {
     expect(wrapper.find('[role="option"]').length).toBe(categories.length)
   })
 })
-
-// const categories = ['Fruit', 'Vegetables', 'Meat']
-
-// test('Categories List to return first category', () => {
-//   expect(categories[0]).toBe('Fruit')
-// })
-
-// test('Categories List to return second category', () => {
-//   const categories = ['Fruit', 'Vegetables', 'Meat']
-//   expect(categories[1]).toBe('Vegetables')
-// })
