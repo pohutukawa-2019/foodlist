@@ -1,13 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import { appendFood } from '../api/foods'
+// TODO: Replace this with an action creator.
+const appendFood = () => {}
 
-export default class AddFood extends React.Component {
+class AddFood extends React.Component {
   state = {
     name: '',
     carbonOutput: '',
     waterUsage: '',
-    categoryId: ''
+    category: ''
   }
 
   handleChange = (event) => {
@@ -16,22 +18,8 @@ export default class AddFood extends React.Component {
     })
   }
 
-  handleDropdown = (event) => {
-    this.setState({
-      categoryId: event.target.value
-    })
-  }
-
   handleAdd = () => {
-    appendFood(this.state)
-      .then(() => this.refreshList())
-  }
-
-  refreshList = (err) => {
-    this.setState({
-      error: err,
-      addFoodVisible: false
-    })
+    this.props.appendFood(this.state)
   }
 
   render () {
@@ -40,22 +28,25 @@ export default class AddFood extends React.Component {
       <div>
         <p><label>Name: </label>
           <input name='name'
+            data-test='name'
             placeholder='Name' value={name}
             onChange={this.handleChange} />
         </p>
         <p><label>Carbon Output: </label>
           <input name='carbonOutput'
+            data-test='carbon'
             value={carbonOutput}
-            placeholder='Carbon Output' 
+            placeholder='Carbon Output'
             onChange={this.handleChange} />
         </p>
         <p><label>Water Usage: </label>
           <input name='waterUsage'
+            data-test='water'
             placeholder='Water Usage' value={waterUsage}
             onChange={this.handleChange} />
         </p>
         <p><label>Food Group/Category: </label>
-          <select id = "category" onChange={this.handleDropdown}>
+          <select name="category" data-test='category' onChange={this.handleChange}>
             <option value="" defaultValue hidden>Choose food group</option>
             <option value="1">Fruits</option>
             <option value="2">Vegetables</option>
@@ -69,3 +60,11 @@ export default class AddFood extends React.Component {
     )
   }
 }
+
+function mapDispatchToProps (dispatch) {
+  return {
+    appendFood: (food) => dispatch(appendFood(food))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddFood)
