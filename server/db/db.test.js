@@ -69,4 +69,39 @@ describe('Database functions for food', () => {
         expect(food.name).toBe(foodItem.name)
       })
   })
+
+it('editFood() edits details of food name', () => {
+ const foodToEdit = {
+  id: 1,
+  name: 'Chicken'
+ }
+ return 
+
+})
+
+it('editFood() edits details of food category', () => {
+  const foodToEdit = {
+   id: 1,
+   categoryId: 5
+  }
+  return 
+
+})
+
+it('editFood() edits details of food carbonValue', () => {
+  const foodToEdit = {
+   id: 1,
+   carbonValue: 20.85,
+  }
+  return
+
+})
+
+it('editFood() edits details of food waterUsage', () => {
+  const foodToEdit = {
+   id: 1,
+   waterUsage: 8763
+  }
+  return
+  
 })
