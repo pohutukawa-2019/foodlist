@@ -1,6 +1,6 @@
 import { error } from './error'
 
-import fetchFoods from '../api/foods'
+import fetchFoods from '../api/fetchFoods'
 
 export const GET_FOOD_PENDING = 'GET_FOOD_PENDING'
 export const GET_FOOD_SUCCESS = 'GET_FOOD_SUCCESS'
