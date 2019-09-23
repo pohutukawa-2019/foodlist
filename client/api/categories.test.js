@@ -20,7 +20,10 @@ describe('API client for categories', () => {
       })
   })
 
-  it.skip('fetchCategories returns an error when expected', () => {
-    // TODO: figure out how to do this
+  it('fetchCategories returns an error when expected', () => {
+    // expect.assertions(1) // otherwise a valid id would still pass
+    return fetchCategories(33).catch(e => {
+      expect(e.message).toBe('Error accessing foods api.')
+    })
   })
 })
