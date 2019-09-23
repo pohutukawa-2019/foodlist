@@ -1,4 +1,4 @@
-import { getFoodById } from './foods'
+import { fetchFoodById } from './foods'
 
 jest.mock('./requestor', () => {
   // requestor exports a function, so we must do so here too
@@ -16,16 +16,16 @@ jest.mock('./requestor', () => {
 })
 
 describe('API client for food', () => {
-  it('getFoodsById returns correct food', () => {
-    return getFoodById(3)
+  it('fetchFoodsById returns correct food', () => {
+    return fetchFoodById(3)
       .then(food => {
         expect(food.id).toBe(3)
       })
   })
 
-  it('getFoodsById returns an error when expected', () => {
+  it('fetchFoodsById returns an error when expected', () => {
     expect.assertions(1) // otherwise a valid id would still pass
-    return getFoodById(33).catch(e => {
+    return fetchFoodById(33).catch(e => {
       expect(e.message).toBe('Error accessing foods api.')
     })
   })
