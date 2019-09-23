@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 import EditFood from './EditFood'
 
 describe('<EditFood>', () => {
-  it('updates the state of a property on input change', () => { 
+  it('updates the state of a property on input change', () => {
     const evt = {
       target: {
         name: 'CO2_output',
