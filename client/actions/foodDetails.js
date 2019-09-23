@@ -1,4 +1,4 @@
-import { getFoodById } from '../api/foods'
+import { fetchFoodById } from '../api/foods'
 import { error } from './error'
 
 export const GET_FOOD_DETAILS_PENDING = 'GET_FOOD_DETAILS_PENDING'
@@ -20,7 +20,7 @@ export function getFoodDetailsSuccess (foodDetails) {
 export function getFoodDetails (foodId) {
   return (dispatch) => {
     dispatch(getFoodDetailsPending())
-    return getFoodById(foodId)
+    return fetchFoodById(foodId)
       .then(foodDetails => {
         dispatch(getFoodDetailsSuccess(foodDetails))
       })

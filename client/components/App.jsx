@@ -6,6 +6,7 @@ import FoodList from './FoodList'
 import TopMenu from './TopMenu'
 import FoodDetails from './FoodDetails'
 import CategoriesListDropdown from './CategoriesListDropdown'
+import AddFood from './AddFood'
 import EditFood from './EditFood'
 
 class App extends React.Component {
@@ -18,8 +19,9 @@ class App extends React.Component {
             <Route path='/' component={CategoriesListDropdown} />
             <Switch>
               <Route exact path='/' component={FoodList} />
-              <Route path={ '/details/:id' } component={FoodDetails} />
-              <Route path={ '/edit/:foodId' } component={EditFood} />
+              <Route path='/details/:id' component={FoodDetails} />
+              <Route path='/edit/:foodId' component={EditFood} />
+              <Route path='/new' component={AddFood} />
             </Switch>
           </Container>
         </>

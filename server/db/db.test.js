@@ -69,4 +69,23 @@ describe('Database functions for food', () => {
         expect(food.name).toBe(foodItem.name)
       })
   })
+
+  it('db.addFood returns a new food', () => {
+    const newFoodItem = {
+      name: 'DazedAndConfused',
+      category_id: 5,
+      carbonOutput: 19.76,
+      waterUsage: 420
+    }
+
+    return db.addFood(newFoodItem, testDb)
+      .then(food => {
+        expect(food.id).toBe(28)
+        return db.getFoodById(food.id, testDb)
+      })
+      .then(food => {
+        expect(food.waterUsage).toBe(newFoodItem.waterUsage)
+        expect(food.carbonValue).toBe(newFoodItem.carbonOutput)
+      })
+  })
 })
