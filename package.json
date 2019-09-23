@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint .",
     "build": "webpack --config client/webpack.config.js",
-    "server": "node .",
-    "start": "run-s build server",
+    "server": "run-s build start",
+    "start": "node .",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",
     "dev": "run-p dev:server dev:client",
@@ -34,7 +34,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./tests/setup.js"
+      "./client/test/setup.js"
     ]
   },
   "dependencies": {

@@ -50,7 +50,12 @@ function addFood (newFood, db = connection) {
       return waterObj
     })
     .then((el) => addWaterUsage(el, db))
-    .then(() => getFoods(db))
+    .then((el) => {
+      const idObj = {
+        id: el[0]
+      }
+      return idObj
+    })
 }
 
 function addCarbonOutput (newFoodCarbon, db = connection) {

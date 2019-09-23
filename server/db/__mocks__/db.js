@@ -3,7 +3,8 @@ module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  addFood
 }
 
 const defaultCategories = [
@@ -101,3 +102,13 @@ function getFoodById (id) {
 async function getFoodsByCategory (category) {
   return Promise.resolve(foods.filter(food => food.category === category))
 }
+
+function addFood (newFood) {
+  foods.push(newFood)
+  // This might be janky
+  return Promise.resolve(foods)
+  // ))
+}
+
+// need to change here to make sure returned id is correct
+// HERE we can maybe put filter after we chuck a new food into the array. Our other DB function does not have anything at all to do with this one. Confusing.

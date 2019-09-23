@@ -22,7 +22,8 @@ router.get('/category/:categoryName', (req, res) => {
 // TEST FOR THIS NEEDS TO BE WRITTEN
 router.post('/', (req, res) => {
   db.addFood(req.body)
-    .then(foods => res.status(200).json(foods))
+    //.then((el) => console.log(el))
+    .then(foodID => res.status(200).json(foodID))
 })
 
 module.exports = router
