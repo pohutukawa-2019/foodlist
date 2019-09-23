@@ -1,9 +1,11 @@
 import { error } from './error'
-
 import fetchFoods from '../api/fetchFoods'
+import { fetchFoodsByCategory } from '../api/foods'
 
 export const GET_FOOD_PENDING = 'GET_FOOD_PENDING'
 export const GET_FOOD_SUCCESS = 'GET_FOOD_SUCCESS'
+export const GET_CATEGORY_PENDING = 'GET_CATEGORY_PENDING'
+export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS'
 
 export function getFoodsPending () {
   return {
@@ -28,5 +30,27 @@ export function getFoods () {
       .catch(err => {
         dispatch(error(err.message))
       })
+  }
+}
+
+export function getCategoryPending () {
+  return {
+    type: GET_CATEGORY_PENDING
+  }
+}
+
+export function getCategorySuccess (category) {
+  return {
+    type: GET_CATEGORY_SUCCESS,
+    category
+  }
+}
+
+export function getFoodsByCategory (categoryName) {
+  return dispatch => {
+    dispatch(getCategoryPending())
+    return fetchFoodsByCategory(categoryName)
+      .then(foods => dispatch(getCategorySuccess(foods)))
+      .catch(err => dispatch(error(err.message)))
   }
 }

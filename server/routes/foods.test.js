@@ -1,5 +1,3 @@
-require('babel-polyfill')
-
 const request = require('supertest')
 
 const server = require('../server')
@@ -29,7 +27,7 @@ describe('Food routes', () => {
     const expected = 7
 
     const newFoodItem = {
-      name: 'DazedAndConfused',
+      name: 'Pizza',
       category_id: 5,
       carbonOutput: 19.76,
       waterUsage: 420,
@@ -37,7 +35,7 @@ describe('Food routes', () => {
     }
 
     return request(server)
-      .post('/api/v1/foods/')
+      .post('/api/v1/foods')
       .send(newFoodItem)
       .then(res => {
         const id = res.body
