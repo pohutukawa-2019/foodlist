@@ -23,8 +23,14 @@ function getFoodById (id, db = connection) {
     .where('foods.id', id).first()
 }
 
+function getCategories (db = connection) {
+  return db('categories')
+    .select()
+}
+
 module.exports = {
   getFoods,
   getFoodById,
-  getFoodsByCategory
+  getFoodsByCategory,
+  getCategories
 }

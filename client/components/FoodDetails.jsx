@@ -1,12 +1,12 @@
 import React from 'react'
-import { getFoodDetails } from '../actions'
-import { connect } from 'http2'
+import { connect } from 'react-redux'
+
+import { getFoodDetails } from '../actions/foodDetails'
 
 class FoodDetails extends React.Component {
-
   componentDidMount () {
-    const id = this.props.food.id || this.props.match.params.id
-    this.props.dispatch(getFoodDetails(id))
+    const id = Number(this.props.match.params.id)
+    this.props.getFoodDetails(id)
   }
 
   render () {
@@ -30,33 +30,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFoodDetails: () => dispatch()
+    getFoodDetails: (id) => dispatch(getFoodDetails(id))
   }
 }
 
-// const details = {
-//   name: 'Turkey',
-//   category: 'meat',
-//   carbon_output: 403,
-//   water_usage: 52
-// }
-
-// export default function FoodDetails (props) {
-//   const foodDetails = props.foodDetails || details
-
-//   const classes = 'food-details '
-
-//   return (
-//     <div className={classes}>
-//       <h2>Details</h2>
-//       <p data-test="name">{foodDetails.name}</p>
-//       <p data-test="category">{foodDetails.category}</p>
-//       <p data-test="carbon">{foodDetails.carbon_output}</p>
-//       <p data-test="water">{foodDetails.water_usage}</p>
-//     </div>
-//   )
-// }
-
-export default connect(
-  mapStateToProps, mapDispatchToProps
-)(FoodDetails)
+export default connect(mapStateToProps, mapDispatchToProps)(FoodDetails)
