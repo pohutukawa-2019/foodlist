@@ -1,6 +1,6 @@
-import fetchCategories from '../api/categories'
-
 import { error } from './error'
+
+import fetchCategories from '../api/categories'
 
 export const GET_CATEGORIES_PENDING = 'GET_CATEGORIES_PENDING'
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
