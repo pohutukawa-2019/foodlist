@@ -6,21 +6,23 @@ import FoodList from './FoodList'
 import TopMenu from './TopMenu'
 import FoodDetails from './FoodDetails'
 import CategoriesListDropdown from './CategoriesListDropdown'
+import EditFood from './EditFood'
 
 class App extends React.Component {
   render () {
     return (
       <Router>
-        <div className='don'>
+        <>
           <Route path='/' component={TopMenu} />
           <Container style={{ marginTop: 75 }}>
             <Route path='/' component={CategoriesListDropdown} />
             <Switch>
               <Route exact path='/' component={FoodList} />
               <Route path={ '/details/:id' } component={FoodDetails} />
+              <Route path={ '/edit/:foodId' } component={EditFood} />
             </Switch>
           </Container>
-        </div>
+        </>
       </Router>
     )
   }
