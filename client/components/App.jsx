@@ -9,10 +9,6 @@ import AddFood from './AddFood'
 import EditFood from './EditFood'
 
 class App extends React.Component {
-  state = {
-    addFoodVisible: false
-  }
-
   render () {
     return (
       <Router>
@@ -22,8 +18,8 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={FoodList} />
               <Route path='/details/:id' component={FoodDetails} />
-              <Route path='/addfood' component={AddFood} />
-              <Route path={ '/edit/:foodId' } component={EditFood} />
+              <Route path='/edit/:foodId' component={EditFood} />
+              <Route path='/new' component={AddFood} />
             </Switch>
           </Container>
         </>
