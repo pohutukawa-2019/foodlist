@@ -20,4 +20,9 @@ router.get('/category/:categoryName', (req, res) => {
     .then(food => res.status(200).json(food))
 })
 
+router.post('/', (req, res) => {
+  db.addFood(req.body)
+    .then(foodID => res.status(200).json(foodID))
+})
+
 module.exports = router
