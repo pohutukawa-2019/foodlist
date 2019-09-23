@@ -7,15 +7,28 @@ describe('<EditFood>', () => {
   it('updates the state of a property on input change', () => {
     const evt = {
       target: {
-        name: 'CO2_output',
-        value: 300
+        name: 'name',
+        value: 'Banana'
       }
     }
     const component = shallow(
       <EditFood />
     )
     component.instance().onChangeHandler(evt)
-    expect(component.state('CO2_output')).toBe(300)
+    expect(component.state('name')).toBe('Banana')
+  })
+  it('updates the state of a number property on input change, making sure it remains a number', () => {
+    const evt = {
+      target: {
+        name: 'water_usage',
+        value: '100'
+      }
+    }
+    const component = shallow(
+      <EditFood />
+    )
+    component.instance().onNumberChangeHandler(evt)
+    expect(component.state('water_usage')).toBe(100)
   })
   it('updates the state of category on dropdown selection', () => {
     const evt = {}

@@ -1,12 +1,15 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 
+import { editFood } from '../api/foods'
+
 export default class EditFood extends React.Component {
   // expecting mapStateToProps, hardcoded until this is implemented
   state = {
+    id: this.props.id || '1',
     name: this.props.name || 'Orange',
     category: this.props.category || 'fruits',
-    CO2_output: this.props.CO2_output || 101,
+    carbon_output: this.props.carbon_output || 101,
     water_usage: this.props.water_usage || 88
   }
 
@@ -16,10 +19,20 @@ export default class EditFood extends React.Component {
     })
   }
 
+  onNumberChangeHandler = (evt) => {
+    this.setState({
+      [evt.target.name]: Number(evt.target.value)
+    })
+  }
+
   dropdownHandler = (evt, result) => {
     this.setState({
       category: result.value
     })
+  }
+
+  onSubmit = () => {
+    editFood(this.state)
   }
 
   capitalize = (string) => {
@@ -61,9 +74,9 @@ export default class EditFood extends React.Component {
               required
             />
             <Form.Input
-              value={this.state.CO2_output}
-              onChange={this.onChangeHandler}
-              name='CO2_output'
+              value={this.state.carbon_output}
+              onChange={this.onNumberChangeHandler}
+              name='carbon_output'
               type='number'
               label='CO2 Output'
               placeholder='Enter CO2 output here'
@@ -71,7 +84,7 @@ export default class EditFood extends React.Component {
             />
             <Form.Input
               value={this.state.water_usage}
-              onChange={this.onChangeHandler}
+              onChange={this.onNumberChangeHandler}
               name='water_usage'
               type='number'
               label='Water Usage'
@@ -93,7 +106,11 @@ export default class EditFood extends React.Component {
             </Form.Dropdown>
           </Form.Group>
           <Form.Group>
-            <Form.Button>Submit</Form.Button>
+            <Form.Button
+              onClick={() => { this.onSubmit() }}
+            >
+              Submit
+            </Form.Button>
           </Form.Group>
         </Form>
       </>
