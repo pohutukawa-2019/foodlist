@@ -25,11 +25,11 @@ describe('Category routes', () => {
 })
 
 describe('Foods routes', () => {
-  it('GET /categories returns a list of catagories', () => {
-    const expected = 6
+  it('DEL / deletes a food', () => {
+    const expected = 5
 
     return request(server)
-      .get('/api/v1/categories')
+      .delete('/api/v1/categories') // put your route here
       .then(res => {
         const count = res.body.length
         expect(count).toBe(expected)
