@@ -29,28 +29,29 @@ function getCategories (db = connection) {
 }
 
 function addFood (newFood, db = connection) {
-  let testObj
+  let addedFood
 
   return db('foods')
     .insert({ name: newFood.name, category_id: newFood.category })
     .then(id => {
+      const foodId = id[0]
       const carbonObj = {
-        food_id: id[0],
+        food_id: foodId,
         value: newFood.carbonOutput
       }
-      testObj = { id: carbonObj.food_id }
+      addedFood = { id: foodId }
       return carbonObj
     })
     .then((carbon) => addCarbonOutput(carbon, db))
     .then(() => {
       const waterObj = {
-        food_id: testObj.id,
+        food_id: addedFood.id,
         value: newFood.waterUsage
       }
       return waterObj
     })
     .then((water) => addWaterUsage(water, db))
-    .then(() => testObj)
+    .then(() => addedFood)
 }
 
 function addCarbonOutput (newFoodCarbon, db = connection) {

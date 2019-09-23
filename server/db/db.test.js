@@ -72,7 +72,7 @@ describe('Database functions for food', () => {
 
   it('db.addFood returns a new food', () => {
     const newFoodItem = {
-      name: 'DazedAndConfused',
+      name: 'Pizza',
       category: 5,
       carbonOutput: 19.76,
       waterUsage: 420
