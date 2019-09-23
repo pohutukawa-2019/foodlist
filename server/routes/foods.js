@@ -22,7 +22,7 @@ router.get('/category/:categoryName', (req, res) => {
 
 router.delete('/', (req, res) => {
   const foodId = req.body.id
-  db.deleteFood(foodId)
+  db.deleteFoodById(foodId)
     .then(res.redirect('/'))
 })
 

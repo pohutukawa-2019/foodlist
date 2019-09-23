@@ -69,4 +69,11 @@ describe('Database functions for food', () => {
         expect(food.name).toBe(foodItem.name)
       })
   })
+
+  it('deleteFoodById () deletes a food', () => {
+    return db.deleteFoodById(2, testDb)
+      .then(foods => {
+        expect(foods.length).toBe(5)
+      })
+  })
 })

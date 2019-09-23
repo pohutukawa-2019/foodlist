@@ -28,10 +28,12 @@ function getCategories (db = connection) {
     .select()
 }
 
-function deleteFood (foodId, db = connection) {
+function deleteFoodById (foodId, db = connection) {
   return db('foods')
     .where('id', foodId)
     .delete()
+    .then(() => db)
+    .then(getFoods)
 }
 
 module.exports = {
@@ -39,5 +41,5 @@ module.exports = {
   getFoodById,
   getFoodsByCategory,
   getCategories,
-  deleteFood
+  deleteFoodById
 }

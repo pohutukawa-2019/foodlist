@@ -23,3 +23,16 @@ describe('Category routes', () => {
       })
   })
 })
+
+describe('Foods routes', () => {
+  it('GET /categories returns a list of catagories', () => {
+    const expected = 6
+
+    return request(server)
+      .get('/api/v1/categories')
+      .then(res => {
+        const count = res.body.length
+        expect(count).toBe(expected)
+      })
+  })
+})
