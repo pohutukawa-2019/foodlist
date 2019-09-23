@@ -20,4 +20,10 @@ router.get('/category/:categoryName', (req, res) => {
     .then(food => res.status(200).json(food))
 })
 
+router.delete('/', (req, res) => {
+  const foodId = req.body.id
+  db.deleteFood(foodId)
+    .then(res.redirect('/'))
+})
+
 module.exports = router
