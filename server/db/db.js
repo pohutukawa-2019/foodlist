@@ -23,8 +23,50 @@ function getFoodById (id, db = connection) {
     .where('foods.id', id).first()
 }
 
+function getCategories (db = connection) {
+  return db('categories')
+    .select()
+}
+
+function addFood (newFood, db = connection) {
+  let testObj
+
+  return db('foods')
+    .insert({ name: newFood.name, category_id: newFood.category_id })
+    .then(id => {
+      const carbonObj = {
+        food_id: id[0],
+        value: newFood.carbonOutput
+      }
+      testObj = { id: carbonObj.food_id }
+      return carbonObj
+    })
+    .then((carbon) => addCarbonOutput(carbon, db))
+    .then(() => {
+      const waterObj = {
+        food_id: testObj.id,
+        value: newFood.waterUsage
+      }
+      return waterObj
+    })
+    .then((water) => addWaterUsage(water, db))
+    .then(() => testObj)
+}
+
+function addCarbonOutput (newFoodCarbon, db = connection) {
+  return db('carbon_outputs')
+    .insert(newFoodCarbon)
+}
+
+function addWaterUsage (newFoodWater, db = connection) {
+  return db('water_usages')
+    .insert(newFoodWater)
+}
+
 module.exports = {
   getFoods,
   getFoodById,
-  getFoodsByCategory
+  getFoodsByCategory,
+  getCategories,
+  addFood
 }

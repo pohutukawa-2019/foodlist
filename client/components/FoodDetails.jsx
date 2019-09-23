@@ -3,6 +3,13 @@ import { getFoodDetails } from '../actions'
 import { connect } from 'http2'
 
 class FoodDetails extends React.Component {
+  let details = {
+    id: '',
+    name: 'Turkey',
+    category: 'meat',
+    carbon_output: 403,
+    water_usage: 52
+  }
 
   componentDidMount () {
     const id = this.props.food.id || this.props.match.params.id

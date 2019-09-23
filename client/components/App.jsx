@@ -6,6 +6,7 @@ import FoodList from './FoodList'
 import TopMenu from './TopMenu'
 import FoodDetails from './FoodDetails'
 import AddFood from './AddFood'
+import EditFood from './EditFood'
 
 class App extends React.Component {
   render () {
@@ -18,6 +19,7 @@ class App extends React.Component {
               <Route exact path='/' component={FoodList} />
               <Route path={ '/details/:id' } component={FoodDetails} />
               <Route path= '/new' component={AddFood} />
+              <Route path={ '/edit/:foodId' } component={EditFood} />
             </Switch>
           </Container>
         </>

@@ -1,35 +1,32 @@
-import request from 'superagent'
+import { error } from './error'
+
+import fetchCategories from '../api/categories'
+
+export const GET_CATEGORIES_PENDING = 'GET_CATEGORIES_PENDING'
+export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
 
 export function getCategoriesPending () {
   return {
-    type: 'GET_CATEGORIES_PENDING'
+    type: GET_CATEGORIES_PENDING
   }
 }
 
 export function getCategoriesSuccess (categories) {
   return {
-    type: 'GET_CATEGORIES_SUCCESS',
+    type: GET_CATEGORIES_SUCCESS,
     categories
   }
 }
 
-export function getCategoriesError (error) {
-  return {
-    type: 'ERROR',
-    message: error
-  }
-}
-
-export function getCategories (categories) {
+export function getCategories () {
   return (dispatch) => {
     dispatch(getCategoriesPending())
-    return request
-      .get(`api/v1/categories/${categories}`)
+    return fetchCategories()
       .then(res => {
         dispatch(getCategoriesSuccess(res.body))
       })
       .catch(err => {
-        dispatch(getCategoriesError(err.message))
+        dispatch(error(err.message))
       })
   }
 }
