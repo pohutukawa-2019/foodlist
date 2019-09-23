@@ -9,19 +9,12 @@
   "scripts": {
     "lint": "eslint .",
     "build": "webpack --config client/webpack.config.js",
-<<<<<<< HEAD
-    "server": "run-s build start",
-    "start": "node .",
+    "start": "node server",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",
-=======
-    "server": "node .",
-    "start": "run-s build server",
-    "test": "jest --verbose",
-    "test:watch": "jest --watchAll",
->>>>>>> consolidate ci workflows
+    "server": "run-s build start",
     "dev": "run-p dev:server dev:client",
-    "dev:server": "nodemon .",
+    "dev:server": "nodemon server",
     "dev:client": "webpack --config client/webpack.config.js --watch",
     "knex": "knex --knexfile server/db/knexfile.js",
     "db:reset": "run-s db:delete db:migrate db:seed",
