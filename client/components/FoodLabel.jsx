@@ -12,11 +12,11 @@ const FoodLabel = ({ food: { carbonOutput, waterUsage } }) => {
 
   return (
     <>
-      <Label className={carbonLabel.color}>
-        <Icon name="cloud" />{carbonLabel.name}
+      <Label data-test='carbonLabel' className={carbonLabel.color}>
+        <Icon name='cloud' />{carbonLabel.name}
       </Label>
-      <Label className={waterLabel.color}>
-        <Icon name="tint" />{waterLabel.name}
+      <Label data-test='waterLabel' className={waterLabel.color}>
+        <Icon name='tint' />{waterLabel.name}
       </Label>
     </>
   )
