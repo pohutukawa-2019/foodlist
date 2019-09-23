@@ -38,5 +38,6 @@ module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  deleteFood
 }
