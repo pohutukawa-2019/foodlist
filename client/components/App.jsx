@@ -1,12 +1,12 @@
 import React from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import FoodList from './FoodList'
 import TopMenu from './TopMenu'
-import FoodDetails from './FoodDetails'
 import AddFood from './AddFood'
 import EditFood from './EditFood'
+import FoodDetails from './FoodDetails'
 
 class App extends React.Component {
   render () {

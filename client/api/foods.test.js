@@ -9,7 +9,9 @@ jest.mock('./requestor', () => {
       return Promise.reject(new Error('id not found'))
     } else {
       return Promise.resolve({
-        id: id
+        body: {
+          id: id
+        }
       })
     }
   }

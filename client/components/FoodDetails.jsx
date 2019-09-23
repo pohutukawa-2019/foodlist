@@ -1,26 +1,38 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const details = {
-  id: '',
-  name: 'Turkey',
-  category: 'meat',
-  carbon_output: 403,
-  water_usage: 52
+import { getFoodDetails } from '../actions/foodDetails'
+
+class FoodDetails extends React.Component {
+  componentDidMount () {
+    const id = Number(this.props.match.params.id)
+    this.props.getFoodDetails(id)
+  }
+
+  render () {
+    const { name, category, carbonOutput, waterUsage } = this.props.foodDetails
+    return (
+      <div>
+        <h2>Food Details</h2>
+        <p data-test='name'>{name}</p>
+        <p data-test='category'>{category}</p>
+        <p data-test='carbon'>{carbonOutput}</p>
+        <p data-test='water'>{waterUsage}</p>
+      </div>
+    )
+  }
 }
 
-export default function FoodDetails (props) {
-  const foodDetails = props.foodDetails || details
-
-  const classes = 'food-details '
-
-  return (
-    <div className={classes}>
-      <h2>Details</h2>
-      <p data-test="name">{foodDetails.name}</p>
-      <p data-test="category">{foodDetails.category}</p>
-      <p data-test="carbon">{foodDetails.carbon_output}</p>
-      <p data-test="water">{foodDetails.water_usage}</p>
-      <a href={`/edit/${foodDetails.id}`}>Edit food</a>
-    </div>
-  )
+const mapStateToProps = state => {
+  return {
+    foodDetails: state.foodDetails
+  }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getFoodDetails: id => dispatch(getFoodDetails(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodDetails)
