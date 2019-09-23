@@ -1,32 +1,26 @@
-const categories = require('./categories')
+import { fetchCategories } from './categories'
 
 jest.mock('./requestor', () => {
   // requestor exports a function, so we must do so here too
   return (endpoint, method, payload) => {
-    const categories = (endpoint.split('/').pop())
-    // so we can test failure conditions
-    if (categories === 'fruits') {
-      return Promise.reject(new Error('category not found'))
-    } else {
-      return Promise.resolve({
-        categories: categories
-      })
-    }
+    return Promise.resolve({
+      body: [
+        { id: 1, name: 'Fruits' },
+        { id: 2, name: 'Vegetables' }
+      ]
+    })
   }
 })
 
 describe('API client for categories', () => {
-  it('getCategoriesAPI returns food category', () => {
-    return categories.getCategoriesAPI('fruits')
-      .then(category => {
-        expect(category).toBe('fruits')
+  it('fetchCategories returns food categories', () => {
+    return fetchCategories()
+      .then(categories => {
+        expect(categories).toHaveLength(2)
       })
   })
 
-  it('getCategories returns an error when expected', () => {
-    expect.assertions(1) // otherwise a valid category would still pass
-    return categories.getCategoriesAPI('fruits').catch(e => {
-      expect(e.message).toBe('Error accessing categories api.')
-    })
+  it.skip('fetchCategories returns an error when expected', () => {
+    // TODO: figure out how to do this
   })
 })
