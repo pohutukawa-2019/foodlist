@@ -1,8 +1,8 @@
 import { getFoodById } from '../api/foods'
+import { error } from './error'
 
 export const GET_FOOD_DETAILS_PENDING = 'GET_FOOD_DETAILS_PENDING'
 export const GET_FOOD_DETAILS_SUCCESS = 'GET_FOOD_DETAILS_SUCCESS'
-export const ERROR = 'ERROR'
 
 export function getFoodDetailsPending () {
   return {
@@ -17,13 +17,6 @@ export function getFoodDetailsSuccess (foodDetails) {
   }
 }
 
-export function getFoodDetailsError (message) {
-  return {
-    type: ERROR,
-    message
-  }
-}
-
 export function getFoodDetails (foodId) {
   return (dispatch) => {
     dispatch(getFoodDetailsPending())
@@ -32,7 +25,7 @@ export function getFoodDetails (foodId) {
         dispatch(getFoodDetailsSuccess(foodDetails))
       })
       .catch(err => {
-        dispatch(getFoodDetailsError(err.message))
+        dispatch(error(err.message))
       })
   }
 }

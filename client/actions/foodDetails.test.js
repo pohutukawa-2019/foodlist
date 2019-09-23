@@ -1,12 +1,13 @@
 import {
-  getFoodDetailsError,
   getFoodDetailsSuccess,
   getFoodDetailsPending,
   getFoodDetails,
   GET_FOOD_DETAILS_PENDING,
-  GET_FOOD_DETAILS_SUCCESS,
-  ERROR
+  GET_FOOD_DETAILS_SUCCESS
 } from './foodDetails'
+import {
+  ERROR
+} from './error'
 
 jest.mock('../api/requestor', () => {
   // requestor exports a function, so we must do so here too
@@ -41,14 +42,6 @@ describe('foodDetails action tests', () => {
 
     expect(action.type).toBe(GET_FOOD_DETAILS_SUCCESS)
     expect(action.foodDetails).toBe(foodDetails)
-  })
-
-  it('getFoodDetailsError returns a ERROR action', () => {
-    const message = 'error message'
-    const action = getFoodDetailsError(message)
-
-    expect(action.type).toBe(ERROR)
-    expect(action.message).toBe(message)
   })
 
   it('getFoodDetails dispatches the correct actions', () => {
