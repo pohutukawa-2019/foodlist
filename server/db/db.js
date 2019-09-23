@@ -28,9 +28,33 @@ function getCategories (db = connection) {
     .select()
 }
 
+function editFood (id, updatedFood, db = connection) {
+  return db('foods')
+    .where('id', id)
+    .update({
+      name: updatedFood.name,
+      category_id: updatedFood.categoryId
+    })
+    .then(() => {
+      return db('water_usages')
+        .where('water_usages.food_id', id)
+        .update({
+          value: updatedFood.waterUsage
+        })
+    })
+    .then(() => {
+      return db('carbon_outputs')
+        .where('carbon_outputs.food_id', id)
+        .update({
+          value: updatedFood.carbonValue
+        })
+    })
+}
+
 module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  editFood
 }
