@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 
 import FoodDetails from './FoodDetails'
 
-FoodDetails.prototype.componentDidMount = () => {}
+FoodDetails.componentDidMount = () => {}
 
 describe('<FoodDetails>', () => {
   it('has h2 text of Details', () => {
