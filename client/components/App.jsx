@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react'
 import FoodList from './FoodList'
 import TopMenu from './TopMenu'
 import FoodDetails from './FoodDetails'
-// import EditFood from './EditFood'
+import EditFood from './EditFood'
 
 class App extends React.Component {
   render () {
@@ -17,7 +17,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={FoodList} />
               <Route path={ '/details/:id' } component={FoodDetails} />
-              {/* <Route path={ '/edit/:foodId' } component={EditFood} /> */}
+              <Route path={ '/edit/:foodId' } component={EditFood} />
             </Switch>
           </Container>
         </>
