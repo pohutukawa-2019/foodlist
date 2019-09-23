@@ -101,3 +101,5 @@ function getFoodById (id) {
 async function getFoodsByCategory (category) {
   return Promise.resolve(foods.filter(food => food.category === category))
 }
+
+// delete function here that returns all the remaining foods. Same as getfoods does.
