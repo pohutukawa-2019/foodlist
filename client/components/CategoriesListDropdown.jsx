@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { Dropdown } from 'semantic-ui-react'
 
 class CategoriesListDropdown extends React.Component {
@@ -31,11 +30,5 @@ const mapStateToProps = state => {
     ] // TODO: change out for values from store once they exist
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-
-//   }
-// }
 
 export default connect(mapStateToProps)(CategoriesListDropdown)
