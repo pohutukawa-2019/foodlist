@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import FoodLabel from './FoodLabel'
 
 export default function Food ({ food }) {
+  const { id, name } = food
   return (
     <div>
-      <Link to={`/details/${food.id}`}><li>{food.name}</li></Link>
+      <li><Link to={`/details/${id}`}>{name}</Link></li>
       <FoodLabel food={food}/>
     </div>
   )
