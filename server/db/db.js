@@ -32,7 +32,7 @@ function addFood (newFood, db = connection) {
   let testObj
 
   return db('foods')
-    .insert({ name: newFood.name, category_id: newFood.category_id })
+    .insert({ name: newFood.name, category_id: newFood.category })
     .then(id => {
       const carbonObj = {
         food_id: id[0],
