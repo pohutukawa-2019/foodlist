@@ -2,10 +2,26 @@ import {
   getFoodDetailsError,
   getFoodDetailsSuccess,
   getFoodDetailsPending,
+  getFoodDetails,
   GET_FOOD_DETAILS_PENDING,
   GET_FOOD_DETAILS_SUCCESS,
   ERROR
 } from './foodDetails'
+
+jest.mock('../api/requestor', () => {
+  // requestor exports a function, so we must do so here too
+  return (endpoint, method, payload) => {
+    const id = Number(endpoint.split('/').pop())
+    // so we can test failure conditions
+    if (id === 33) {
+      return Promise.reject(new Error('id not found'))
+    } else {
+      return Promise.resolve({
+        id: id
+      })
+    }
+  }
+})
 
 describe('foodDetails action tests', () => {
   it('getFoodDetailsPending returns a GET_FOOD_DETAILS_PENDING action', () => {
@@ -33,5 +49,27 @@ describe('foodDetails action tests', () => {
 
     expect(action.type).toBe(ERROR)
     expect(action.message).toBe(message)
+  })
+
+  it('getFoodDetails dispatches the correct actions', () => {
+    const dispatch = jest.fn()
+    const foodId = 3
+
+    return getFoodDetails(foodId)(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0].type).toBe(GET_FOOD_DETAILS_PENDING)
+        expect(dispatch.mock.calls[1][0].type).toBe(GET_FOOD_DETAILS_SUCCESS)
+      })
+  })
+
+  it('getFoodDetails dispatches an error when applicable', () => {
+    const dispatch = jest.fn()
+    const foodId = 33
+
+    return getFoodDetails(foodId)(dispatch)
+      .then(() => {
+        expect(dispatch.mock.calls[0][0].type).toBe(GET_FOOD_DETAILS_PENDING)
+        expect(dispatch.mock.calls[1][0].type).toBe(ERROR)
+      })
   })
 })

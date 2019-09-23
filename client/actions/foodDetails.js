@@ -27,7 +27,7 @@ export function getFoodDetailsError (message) {
 export function getFoodDetails (foodId) {
   return (dispatch) => {
     dispatch(getFoodDetailsPending())
-      .then(getFoodById(foodId))
+    return getFoodById(foodId)
       .then(foodDetails => {
         dispatch(getFoodDetailsSuccess(foodDetails))
       })
