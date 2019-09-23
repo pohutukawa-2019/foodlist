@@ -1,6 +1,7 @@
 import React from 'react'
 
 const details = {
+  id: '',
   name: 'Turkey',
   category: 'meat',
   carbon_output: 403,
@@ -19,6 +20,7 @@ export default function FoodDetails (props) {
       <p data-test="category">{foodDetails.category}</p>
       <p data-test="carbon">{foodDetails.carbon_output}</p>
       <p data-test="water">{foodDetails.water_usage}</p>
+      <a href={`/editfood/${foodDetails.id}`}>Edit food</a>
     </div>
   )
 }
