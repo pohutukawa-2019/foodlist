@@ -1,11 +1,11 @@
-import request from 'superagent'
+import makeRequest from './requestor'
 
 const foodPath = '/api/v1/foods'
 const foodCategoryPath = '/api/v1/foods/category'
 
 export function getFoodById (foodId) {
-  return request
-    .get(`${foodPath}/${foodId}`)
+  return makeRequest(`${foodPath}/${foodId}`)
+    .then(res => res) // TODO: insert a mapping layer here
     .catch(() => { throw new Error('Error accessing foods api.') })
 }
 
