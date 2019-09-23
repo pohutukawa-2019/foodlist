@@ -3,7 +3,8 @@ module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  addFood
 }
 
 const defaultCategories = [
@@ -100,4 +101,10 @@ function getFoodById (id) {
 
 async function getFoodsByCategory (category) {
   return Promise.resolve(foods.filter(food => food.category === category))
+}
+
+function addFood (newFood) {
+  foods.push(newFood)
+  const food = foods.pop()
+  return Promise.resolve(food.id)
 }
