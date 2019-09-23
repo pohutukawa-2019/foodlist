@@ -3,7 +3,8 @@ module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  deleteFoodById
 }
 
 const defaultCategories = [
@@ -96,6 +97,11 @@ function getFoods () {
 
 function getFoodById (id) {
   return Promise.resolve(foods.find(food => food.id === id))
+}
+
+function deleteFoodById (id) {
+  //return Promise.resolve(foods)
+  return Promise.resolve(foods.filter(food => id !== food.id))
 }
 
 async function getFoodsByCategory (category) {

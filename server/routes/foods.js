@@ -20,10 +20,11 @@ router.get('/category/:categoryName', (req, res) => {
     .then(food => res.status(200).json(food))
 })
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
+  // on wiki it says to use /:id
   const foodId = req.body.id
   db.deleteFoodById(foodId)
-    .then(res.redirect('/'))
+    .then(food => res.status(200).json(food))
 })
 
 module.exports = router

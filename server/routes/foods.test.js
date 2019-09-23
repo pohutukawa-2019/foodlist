@@ -29,10 +29,16 @@ describe('Foods routes', () => {
     const expected = 5
 
     return request(server)
-      .delete('/api/v1/categories') // put your route here
+      .delete('/api/v1/foods/') // put your route here
       .then(res => {
         const count = res.body.length
         expect(count).toBe(expected)
       })
   })
 })
+
+// router.delete('/', (req, res) => {
+//   const foodId = req.body.id
+//   db.deleteFoodById(foodId)
+//     .then(res.redirect('/'))
+// })
