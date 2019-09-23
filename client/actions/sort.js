@@ -12,3 +12,11 @@ export function setAlphaDescending (sortType) {
     type: sortType
   }
 }
+
+export const SORT_CARBON_LOW_HIGH = 'SORT_CARBON_LOW_HIGH'
+
+export function sortCarbonLowHigh (sortType) {
+  return {
+    type: sortType
+  }
+}
