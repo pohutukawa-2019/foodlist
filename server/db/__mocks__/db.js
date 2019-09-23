@@ -105,10 +105,6 @@ async function getFoodsByCategory (category) {
 
 function addFood (newFood) {
   foods.push(newFood)
-  // This might be janky
-  return Promise.resolve(foods)
-  // ))
+  const food = foods.pop()
+  return Promise.resolve(food.id)
 }
-
-// need to change here to make sure returned id is correct
-// HERE we can maybe put filter after we chuck a new food into the array. Our other DB function does not have anything at all to do with this one. Confusing.

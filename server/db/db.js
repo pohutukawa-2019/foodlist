@@ -27,7 +27,7 @@ function getCategories (db = connection) {
   return db('categories')
     .select()
 }
-// ROUTE TEST NEEDS TO BE WRITTEN
+
 function addFood (newFood, db = connection) {
   let testObj
 
@@ -38,24 +38,19 @@ function addFood (newFood, db = connection) {
         food_id: id[0],
         value: newFood.carbonOutput
       }
-      testObj = carbonObj.food_id
+      testObj = { id: carbonObj.food_id }
       return carbonObj
     })
-    .then((el) => addCarbonOutput(el, db))
-    .then(id => {
+    .then((carbon) => addCarbonOutput(carbon, db))
+    .then(() => {
       const waterObj = {
-        food_id: testObj,
+        food_id: testObj.id,
         value: newFood.waterUsage
       }
       return waterObj
     })
-    .then((el) => addWaterUsage(el, db))
-    .then((el) => {
-      const idObj = {
-        id: el[0]
-      }
-      return idObj
-    })
+    .then((water) => addWaterUsage(water, db))
+    .then(() => testObj)
 }
 
 function addCarbonOutput (newFoodCarbon, db = connection) {
