@@ -10,13 +10,14 @@ class FoodDetails extends React.Component {
   }
 
   render () {
+    const { name, category, carbonOutput, waterUsage } = this.props.foodDetails
     return (
       <div>
         <h2>Food Details</h2>
-        <p>{this.props.foodDetails.name}</p>
-        <p>{this.props.foodDetails.category}</p>
-        <p>{this.props.foodDetails.carbon_output}</p>
-        <p>{this.props.foodDetails.water_usage}</p>
+        <p data-test='name'>{name}</p>
+        <p data-test='category'>{category}</p>
+        <p data-test='carbon'>{carbonOutput}</p>
+        <p data-test='water'>{waterUsage}</p>
       </div>
     )
   }
@@ -24,7 +25,7 @@ class FoodDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    foodDetails: state.foodDetails.foodDetails
+    foodDetails: state.foodDetails
   }
 }
 
