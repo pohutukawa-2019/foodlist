@@ -9,8 +9,8 @@ export default class EditFood extends React.Component {
     id: this.props.id || '1',
     name: this.props.name || 'Orange',
     category: this.props.category || 'fruits',
-    carbon_output: this.props.carbon_output || 101,
-    water_usage: this.props.water_usage || 88
+    carbonOutput: this.props.carbonOutput || 101,
+    waterUsage: this.props.waterUsage || 88
   }
 
   onChangeHandler = (evt) => {
@@ -74,18 +74,18 @@ export default class EditFood extends React.Component {
               required
             />
             <Form.Input
-              value={this.state.carbon_output}
+              value={this.state.carbonOutput}
               onChange={this.onNumberChangeHandler}
-              name='carbon_output'
+              name='carbonOutput'
               type='number'
               label='CO2 Output'
               placeholder='Enter CO2 output here'
               required
             />
             <Form.Input
-              value={this.state.water_usage}
+              value={this.state.waterUsage}
               onChange={this.onNumberChangeHandler}
-              name='water_usage'
+              name='waterUsage'
               type='number'
               label='Water Usage'
               placeholder='Enter water usage here'

@@ -20,7 +20,7 @@ describe('<EditFood>', () => {
   it('updates the state of a number property on input change, making sure it remains a number', () => {
     const evt = {
       target: {
-        name: 'water_usage',
+        name: 'waterUsage',
         value: '100'
       }
     }
@@ -28,7 +28,7 @@ describe('<EditFood>', () => {
       <EditFood />
     )
     component.instance().onNumberChangeHandler(evt)
-    expect(component.state('water_usage')).toBe(100)
+    expect(component.state('waterUsage')).toBe(100)
   })
   it('updates the state of category on dropdown selection', () => {
     const evt = {}

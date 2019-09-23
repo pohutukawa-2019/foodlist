@@ -9,7 +9,6 @@ export function getFoodById (foodId) {
 }
 
 export function editFood (food) {
-  console.log(food)
   return makeRequest(`/foods/${food.id}`, 'put', food)
     .catch(() => { throw new Error('Error accessing edit foods api.') })
 }
