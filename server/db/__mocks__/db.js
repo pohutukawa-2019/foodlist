@@ -4,7 +4,8 @@ module.exports = {
   getFoodById,
   getFoodsByCategory,
   getCategories,
-  deleteFoodById
+  deleteFoodById,
+  addFood
 }
 
 const defaultCategories = [
@@ -100,7 +101,6 @@ function getFoodById (id) {
 }
 
 function deleteFoodById (id) {
-  //return Promise.resolve(foods)
   return Promise.resolve(foods.filter(food => id !== food.id))
 }
 
@@ -108,4 +108,8 @@ async function getFoodsByCategory (category) {
   return Promise.resolve(foods.filter(food => food.category === category))
 }
 
-// delete function here that returns all the remaining foods. Same as getfoods does.
+function addFood (newFood) {
+  foods.push(newFood)
+  const food = foods.pop()
+  return Promise.resolve(food.id)
+}

@@ -12,11 +12,11 @@ beforeEach(() => {
 })
 
 describe('Category routes', () => {
-  it('GET /categories returns a list of catagories', () => {
+  it('GET /categories returns a list of categories', () => {
     const expected = 6
 
     return request(server)
-      .get('/api/v1/categories')
+      .get('/api/v1/categories/')
       .then(res => {
         const count = res.body.length
         expect(count).toBe(expected)
@@ -24,21 +24,35 @@ describe('Category routes', () => {
   })
 })
 
-describe('Foods routes', () => {
+describe('Food routes', () => {
+  it('POST / new food add + return id of new food', () => {
+    const expected = 7
+
+    const newFoodItem = {
+      name: 'DazedAndConfused',
+      category_id: 5,
+      carbonOutput: 19.76,
+      waterUsage: 420,
+      id: expected
+    }
+
+    return request(server)
+      .post('/api/v1/foods/')
+      .send(newFoodItem)
+      .then(res => {
+        const id = res.body
+        expect(id).toBe(expected)
+      })
+  },
   it('DEL / deletes a food', () => {
     const expected = 5
 
     return request(server)
-      .delete('/api/v1/foods/') // put your route here
+      .delete('/api/v1/foods/2')
       .then(res => {
         const count = res.body.length
         expect(count).toBe(expected)
       })
   })
+  )
 })
-
-// router.delete('/', (req, res) => {
-//   const foodId = req.body.id
-//   db.deleteFoodById(foodId)
-//     .then(res.redirect('/'))
-// })

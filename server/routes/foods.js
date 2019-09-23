@@ -20,9 +20,13 @@ router.get('/category/:categoryName', (req, res) => {
     .then(food => res.status(200).json(food))
 })
 
+router.post('/', (req, res) => {
+  db.addFood(req.body)
+    .then(foodID => res.status(200).json(foodID))
+})
+
 router.delete('/:id', (req, res) => {
-  // on wiki it says to use /:id
-  const foodId = req.body.id
+  const foodId = req.params.id
   db.deleteFoodById(foodId)
     .then(food => res.status(200).json(food))
 })
