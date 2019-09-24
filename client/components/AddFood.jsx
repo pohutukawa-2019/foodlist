@@ -62,6 +62,7 @@ class AddFood extends React.Component {
             <option value="6">Animal Byproducts</option>
           </select></p>
         <button type='button' onClick={this.handleAdd}>Add Food</button>
+        {this.props.addedFood && <p>Food Successfully Added!</p>}
       </div>
     )
   }
@@ -73,4 +74,10 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddFood)
+function mapStateToProps (state) {
+  return {
+    addedFood: state.addedFood
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFood)
