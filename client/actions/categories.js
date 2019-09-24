@@ -22,8 +22,8 @@ export function getCategories () {
   return (dispatch) => {
     dispatch(getCategoriesPending())
     return fetchCategories()
-      .then(res => {
-        dispatch(getCategoriesSuccess(res.body))
+      .then(categories => {
+        dispatch(getCategoriesSuccess(categories))
       })
       .catch(err => {
         dispatch(error(err.message))
