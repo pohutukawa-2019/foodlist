@@ -20,6 +20,12 @@ class AddFood extends React.Component {
 
   handleAdd = () => {
     this.props.addNewFood(this.state)
+    this.setState({
+      name: '',
+      carbonOutput: '',
+      waterUsage: '',
+      category: ''
+    })
   }
 
   render () {
