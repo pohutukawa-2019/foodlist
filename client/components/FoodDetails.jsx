@@ -19,7 +19,7 @@ class FoodDetails extends React.Component {
         <p data-test='category'>{category}</p>
         <p data-test='carbon'>{carbonOutput}</p>
         <p data-test='water'>{waterUsage}</p>
-        <Link to={`/edit/${id}`}>Edit</Link>
+        <Link to={`/edit/${id}`}>Edit {name}</Link>
       </div>
     )
   }

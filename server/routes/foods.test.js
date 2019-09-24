@@ -41,7 +41,16 @@ describe('Food routes', () => {
         const id = res.body
         expect(id).toBe(expected)
       })
-  }
+  })
 
-  )
+  it('DEL / deletes a food', () => {
+    const expected = 6
+
+    return request(server)
+      .delete('/api/v1/foods/2')
+      .then(res => {
+        const count = res.body.length
+        expect(count).toBe(expected)
+      })
+  })
 })

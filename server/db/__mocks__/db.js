@@ -4,6 +4,7 @@ module.exports = {
   getFoodById,
   getFoodsByCategory,
   getCategories,
+  deleteFoodById,
   addFood
 }
 
@@ -39,42 +40,42 @@ const defaultFoods = [
     id: 1,
     category: 'Fruits',
     name: 'Tomatoes',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   },
   {
     id: 2,
     category: 'Fruits',
     name: 'Oranges',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   },
   {
     id: 3,
     category: 'Fruits',
     name: 'Apples',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   },
   {
     id: 4,
     category: 'Fruits',
     name: 'Strawberries',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   },
   {
     id: 5,
     category: 'Fruits',
     name: 'Avocados',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   },
   {
     id: 6,
     category: 'Fruits',
     name: 'Plums',
-    carbonValue: 1000,
+    carbonOutput: 1000,
     waterUsage: 500
   }
 ]
@@ -97,6 +98,10 @@ function getFoods () {
 
 function getFoodById (id) {
   return Promise.resolve(foods.find(food => food.id === id))
+}
+
+function deleteFoodById (id) {
+  return Promise.resolve(foods.filter(food => id !== food.id))
 }
 
 async function getFoodsByCategory (category) {

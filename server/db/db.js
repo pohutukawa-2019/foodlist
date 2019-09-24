@@ -19,13 +19,21 @@ function getFoodById (id, db = connection) {
     .join('carbon_outputs', 'carbon_outputs.food_id', '=', 'foods.id')
     .join('water_usages', 'water_usages.food_id', '=', 'foods.id')
     .join('categories', 'category_id', '=', 'categories.id')
-    .select('foods.id', 'foods.name', 'categories.name as category', 'carbon_outputs.value as carbonValue', 'water_usages.value as waterUsage')
+    .select('foods.id', 'foods.name', 'categories.name as category', 'carbon_outputs.value as carbonOutput', 'water_usages.value as waterUsage')
     .where('foods.id', id).first()
 }
 
 function getCategories (db = connection) {
   return db('categories')
     .select()
+}
+
+function deleteFoodById (foodId, db = connection) {
+  return db('foods')
+    .where('id', foodId)
+    .delete()
+    .then(() => db)
+    .then(getFoods)
 }
 
 function addFood (newFood, db = connection) {
@@ -64,10 +72,35 @@ function addWaterUsage (newFoodWater, db = connection) {
     .insert(newFoodWater)
 }
 
+function editFood (id, updatedFood, db = connection) {
+  return db('foods')
+    .where('id', id)
+    .update({
+      name: updatedFood.name,
+      category_id: updatedFood.categoryId
+    })
+    .then(() => {
+      return db('water_usages')
+        .where('water_usages.food_id', id)
+        .update({
+          value: updatedFood.waterUsage
+        })
+    })
+    .then(() => {
+      return db('carbon_outputs')
+        .where('carbon_outputs.food_id', id)
+        .update({
+          value: updatedFood.carbonOutput
+        })
+    })
+}
+
 module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
   getCategories,
-  addFood
+  deleteFoodById,
+  addFood,
+  editFood
 }
