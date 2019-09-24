@@ -1,4 +1,4 @@
-require('babel-polyfill')
+const request = require('supertest')
 
 const server = require('../server')
 const db = require('../db/db')
@@ -10,10 +10,7 @@ beforeEach(() => {
 })
 
 describe('Category routes', () => {
-  it('GET /categories returns a list of catagories', () => {
-    jest.unmock('superagent')
-    const request = require('supertest')
-
+  it('GET /categories returns a list of categories', () => {
     const expected = 6
 
     return request(server)
@@ -23,4 +20,28 @@ describe('Category routes', () => {
         expect(count).toBe(expected)
       })
   })
+})
+
+describe('Food routes', () => {
+  it('POST / new food add + return id of new food', () => {
+    const expected = 7
+
+    const newFoodItem = {
+      name: 'Pizza',
+      category_id: 5,
+      carbonOutput: 19.76,
+      waterUsage: 420,
+      id: expected
+    }
+
+    return request(server)
+      .post('/api/v1/foods')
+      .send(newFoodItem)
+      .then(res => {
+        const id = res.body
+        expect(id).toBe(expected)
+      })
+  }
+
+  )
 })

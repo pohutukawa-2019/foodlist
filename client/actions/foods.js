@@ -1,16 +1,21 @@
-import request from 'superagent'
-
 import { error } from './error'
+import fetchFoods from '../api/fetchFoods'
+import { fetchFoodsByCategory } from '../api/foods'
+
+export const GET_FOOD_PENDING = 'GET_FOOD_PENDING'
+export const GET_FOOD_SUCCESS = 'GET_FOOD_SUCCESS'
+export const GET_CATEGORY_PENDING = 'GET_CATEGORY_PENDING'
+export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS'
 
 export function getFoodsPending () {
   return {
-    type: 'GET_FOOD_PENDING'
+    type: GET_FOOD_PENDING
   }
 }
 
 export function getFoodsSuccess (foods) {
   return {
-    type: 'GET_FOOD_SUCCESS',
+    type: GET_FOOD_SUCCESS,
     foods
   }
 }
@@ -18,10 +23,34 @@ export function getFoodsSuccess (foods) {
 export function getFoods () {
   return dispatch => {
     dispatch(getFoodsPending())
+    return fetchFoods()
+      .then(foods => {
+        dispatch(getFoodsSuccess(foods))
+      })
+      .catch(err => {
+        dispatch(error(err.message))
+      })
+  }
+}
 
-    request
-      .get('/api/v1/foods')
-      .then(res => dispatch(getFoodsSuccess(res.body)))
+export function getCategoryPending () {
+  return {
+    type: GET_CATEGORY_PENDING
+  }
+}
+
+export function getCategorySuccess (category) {
+  return {
+    type: GET_CATEGORY_SUCCESS,
+    category
+  }
+}
+
+export function getFoodsByCategory (categoryName) {
+  return dispatch => {
+    dispatch(getCategoryPending())
+    return fetchFoodsByCategory(categoryName)
+      .then(foods => dispatch(getCategorySuccess(foods)))
       .catch(err => dispatch(error(err.message)))
   }
 }

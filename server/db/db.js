@@ -19,7 +19,7 @@ function getFoodById (id, db = connection) {
     .join('carbon_outputs', 'carbon_outputs.food_id', '=', 'foods.id')
     .join('water_usages', 'water_usages.food_id', '=', 'foods.id')
     .join('categories', 'category_id', '=', 'categories.id')
-    .select('foods.id', 'foods.name', 'categories.name as category', 'carbon_outputs.value as carbonValue', 'water_usages.value as waterUsage')
+    .select('foods.id', 'foods.name', 'categories.name as category', 'carbon_outputs.value as carbonOutput', 'water_usages.value as waterUsage')
     .where('foods.id', id).first()
 }
 
@@ -28,9 +28,70 @@ function getCategories (db = connection) {
     .select()
 }
 
+function addFood (newFood, db = connection) {
+  let addedFood
+
+  return db('foods')
+    .insert({ name: newFood.name, category_id: newFood.category })
+    .then(id => {
+      const foodId = id[0]
+      const carbonObj = {
+        food_id: foodId,
+        value: newFood.carbonOutput
+      }
+      addedFood = { id: foodId }
+      return carbonObj
+    })
+    .then((carbon) => addCarbonOutput(carbon, db))
+    .then(() => {
+      const waterObj = {
+        food_id: addedFood.id,
+        value: newFood.waterUsage
+      }
+      return waterObj
+    })
+    .then((water) => addWaterUsage(water, db))
+    .then(() => addedFood)
+}
+
+function addCarbonOutput (newFoodCarbon, db = connection) {
+  return db('carbon_outputs')
+    .insert(newFoodCarbon)
+}
+
+function addWaterUsage (newFoodWater, db = connection) {
+  return db('water_usages')
+    .insert(newFoodWater)
+}
+
+function editFood (id, updatedFood, db = connection) {
+  return db('foods')
+    .where('id', id)
+    .update({
+      name: updatedFood.name,
+      category_id: updatedFood.categoryId
+    })
+    .then(() => {
+      return db('water_usages')
+        .where('water_usages.food_id', id)
+        .update({
+          value: updatedFood.waterUsage
+        })
+    })
+    .then(() => {
+      return db('carbon_outputs')
+        .where('carbon_outputs.food_id', id)
+        .update({
+          value: updatedFood.carbonOutput
+        })
+    })
+}
+
 module.exports = {
   getFoods,
   getFoodById,
   getFoodsByCategory,
-  getCategories
+  getCategories,
+  addFood,
+  editFood
 }
