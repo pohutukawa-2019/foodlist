@@ -45,7 +45,7 @@ describe('sortType reducer', () => {
     const newState = sortType(currentState, action)
     expect(newState).toBe(SORT_WATER_DESCENDING)
   })
-  
+
   it('returns the correct sortType when passed a SORT_CARBON_DESCENDING action', () => {
     const currentState = ''
     const action = {
