@@ -4,6 +4,7 @@ module.exports = {
   getFoodById,
   getFoodsByCategory,
   getCategories,
+  deleteFoodById,
   addFood
 }
 
@@ -97,6 +98,10 @@ function getFoods () {
 
 function getFoodById (id) {
   return Promise.resolve(foods.find(food => food.id === id))
+}
+
+function deleteFoodById (id) {
+  return Promise.resolve(foods.filter(food => id !== food.id))
 }
 
 async function getFoodsByCategory (category) {

@@ -28,6 +28,14 @@ function getCategories (db = connection) {
     .select()
 }
 
+function deleteFoodById (foodId, db = connection) {
+  return db('foods')
+    .where('id', foodId)
+    .delete()
+    .then(() => db)
+    .then(getFoods)
+}
+
 function addFood (newFood, db = connection) {
   let addedFood
 
@@ -92,6 +100,7 @@ module.exports = {
   getFoodById,
   getFoodsByCategory,
   getCategories,
+  deleteFoodById,
   addFood,
   editFood
 }

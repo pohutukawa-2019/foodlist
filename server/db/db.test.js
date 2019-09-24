@@ -70,6 +70,14 @@ describe('Database functions for food', () => {
       })
   })
 
+  it('deleteFoodById () deletes a food', () => {
+    return db.deleteFoodById(2, testDb)
+      .then(foods => {
+        expect(foods.length).toBe(26)
+        expect(foods[1].name).toBe('Turkey')
+      })
+  })
+
   it('db.addFood returns a new food', () => {
     const newFoodItem = {
       name: 'Pizza',
@@ -77,7 +85,6 @@ describe('Database functions for food', () => {
       carbonOutput: 19.76,
       waterUsage: 420
     }
-
     return db.addFood(newFoodItem, testDb)
       .then(food => {
         expect(food.id).toBe(28)
