@@ -6,6 +6,7 @@ import pending from './pending'
 import categories from './categories'
 import foodDetails from './foodDetails'
 import sortType from './sortType'
+import addedFood from './addedFood'
 
 export default combineReducers({
   foods,
@@ -13,5 +14,6 @@ export default combineReducers({
   pending,
   categories,
   foodDetails,
-  sortType
+  sortType,
+  addedFood
 })
