@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { appendFood } from '../api/foods'
 
 // TODO: Replace this with an action creator.
-const appendFood = () => {}
 
 class AddFood extends React.Component {
   state = {
