@@ -33,7 +33,7 @@ describe('foodDetails action tests', () => {
       id: 3,
       name: 'Turkey',
       category: 'Meat',
-      carbonValue: 5.83,
+      carbonOutput: 5.83,
       waterUsage: 5291
     }
     const action = getFoodDetailsSuccess(foodDetails)
