@@ -1,6 +1,6 @@
 import makeRequest from './requestor'
 
-const foodPath = '/api/v1/foods'
+const foodPath = '/foods'
 
 export default function fetchFoods () {
   return makeRequest(foodPath)

@@ -1,13 +1,11 @@
 import {
+  getFoodDetails,
   getFoodDetailsSuccess,
   getFoodDetailsPending,
-  getFoodDetails,
   GET_FOOD_DETAILS_PENDING,
   GET_FOOD_DETAILS_SUCCESS
 } from './foodDetails'
-import {
-  ERROR
-} from './error'
+import { ERROR } from './error'
 
 jest.mock('../api/requestor', () => {
   // requestor exports a function, so we must do so here too

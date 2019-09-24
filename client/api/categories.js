@@ -1,6 +1,6 @@
 import makeRequest from './requestor'
 
-const categoriesPath = '/api/v1/categories'
+const categoriesPath = '/categories'
 
 export function fetchCategories () {
   return makeRequest(categoriesPath)
