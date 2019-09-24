@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getFoods } from '../actions/foods'
 import Food from './Food'
 import SortListDropdown from './SortListDropdown'
+import CategoriesListDropdown from './CategoriesListDropdown'
 
 class FoodList extends React.Component {
   componentDidMount () {
@@ -25,6 +26,8 @@ class FoodList extends React.Component {
     return (
       <>
         {error && <div>{error}</div>}
+        <CategoriesListDropdown />
+        <br />
         <SortListDropdown />
         <ul>
           {foods.map(food =>
