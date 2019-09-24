@@ -1,7 +1,7 @@
 import {
   setAlphaAscending,
   setAlphaDescending,
-  sortCarbonLowHigh,
+  sortCarbonDescending,
   SORT_ALPHABETICAL_ASCENDING,
   SORT_ALPHABETICAL_DESCENDING,
   SORT_CARBON_LOW_HIGH
@@ -19,7 +19,7 @@ describe('sort actions', () => {
   })
 
   it('sortCarbonLowHigh returns a SORT_CARBON_LOW_HIGH action', () => {
-    const action = sortCarbonLowHigh(SORT_CARBON_LOW_HIGH)
+    const action = sortCarbonDescending(SORT_CARBON_LOW_HIGH)
     expect(action.type).toBe(SORT_CARBON_LOW_HIGH)
   })
 })
