@@ -28,7 +28,7 @@ describe('API client for food', () => {
   it('fetchFoodsById returns an error when expected', () => {
     expect.assertions(1) // otherwise a valid id would still pass
     return fetchFoodById(33).catch(e => {
-      expect(e.message).toBe('Error accessing foods api.')
+      expect(e.message).toBe('Error accessing foods api')
     })
   })
 })
