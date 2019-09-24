@@ -1,6 +1,6 @@
 export const SORT_ALPHABETICAL_ASCENDING = 'SORT_ALPHABETICAL_ASCENDING'
 export const SORT_ALPHABETICAL_DESCENDING = 'SORT_ALPHABETICAL_DESCENDING'
-export const SORT_CARBON_LOW_HIGH = 'SORT_CARBON_LOW_HIGH'
+export const SORT_CARBON_DESCENDING = 'SORT_CARBON_LOW_HIGH'
 
 export function setAlphaAscending (sortType) {
   return {
@@ -14,7 +14,7 @@ export function setAlphaDescending (sortType) {
   }
 }
 
-export function sortCarbonLowHigh (sortType) {
+export function sortCarbonDescending (sortType) {
   return {
     type: sortType
   }
