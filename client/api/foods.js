@@ -4,13 +4,13 @@ const foodPath = '/foods'
 
 export function fetchFoodById (foodId) {
   return makeRequest(`${foodPath}/${foodId}`)
-    .then(res => res) // TODO: insert a mapping layer here
+    .then(res => res.body) // TODO: insert a mapping layer here
     .catch(() => { throw new Error('Error accessing foods api.') })
 }
 
 export function appendFood (food) {
   return makeRequest(foodPath, 'post', food)
-    .then(response => response.body)
+    .then(res => res.body)
     .catch(() => { throw new Error('Error accessing foods api.') })
 }
 
