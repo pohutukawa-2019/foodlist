@@ -14,8 +14,8 @@ export function setAlphaDescending (sortType) {
   }
 }
 
-export function sortCarbonDescending (sortType) {
+export function sortCarbonDescending () {
   return {
-    type: sortType
+    type: SORT_CARBON_DESCENDING
   }
 }
