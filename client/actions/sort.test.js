@@ -3,11 +3,13 @@ import {
   setAlphaDescending,
   setWaterAscending,
   setWaterDescending,
+  sortCarbonAscending,
   sortCarbonDescending,
   SORT_ALPHABETICAL_ASCENDING,
   SORT_ALPHABETICAL_DESCENDING,
-  SORT_WATER_DESCENDING,
   SORT_WATER_ASCENDING,
+  SORT_WATER_DESCENDING,
+  SORT_CARBON_ASCENDING,
   SORT_CARBON_DESCENDING
 } from './sort'
 
@@ -22,18 +24,23 @@ describe('sort actions', () => {
     expect(action.type).toBe(SORT_ALPHABETICAL_DESCENDING)
   })
 
+  it('setWaterAscending returns a SORT_WATER_ASCENDING action', () => {
+    const action = setWaterAscending()
+    expect(action.type).toBe(SORT_WATER_ASCENDING)
+  })
+
   it('setWaterDescending returns a SORT_WATER_DESCENDING action', () => {
     const action = setWaterDescending()
     expect(action.type).toBe(SORT_WATER_DESCENDING)
   })
 
-  it('sortCarbonLowHigh returns a SORT_CARBON_LOW_HIGH action', () => {
-    const action = sortCarbonDescending()
-    expect(action.type).toBe(SORT_CARBON_DESCENDING)
+  it('sortCarbonAscending returns a SORT_CARBON_ASCENDING action', () => {
+    const action = sortCarbonAscending()
+    expect(action.type).toBe(SORT_CARBON_ASCENDING)
   })
 
-  it('setWaterAscending returns a SORT_WATER_ASCENDING action', () => {
-    const action = setWaterAscending()
-    expect(action.type).toBe(SORT_WATER_ASCENDING)
+  it('sortCarbonDescending returns a SORT_CARBON_DESCENDING action', () => {
+    const action = sortCarbonDescending()
+    expect(action.type).toBe(SORT_CARBON_DESCENDING)
   })
 })
