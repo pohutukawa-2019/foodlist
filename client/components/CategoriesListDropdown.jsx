@@ -27,18 +27,11 @@ class CategoriesListDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const categories = [
-    'Fruit',
-    'Vegetables',
-    'Grains, beans, and legumes',
-    'Fish', 'Meat', 'Animal Byproducts'
-  ] // TODO: change out for values from store once they exist
-
   return {
-    categories: categories.map(category => ({
-      key: category,
-      text: category,
-      value: category
+    categories: state.categories.map(category => ({
+      key: category.name,
+      text: category.name,
+      value: category.name
     }))
   }
 }
