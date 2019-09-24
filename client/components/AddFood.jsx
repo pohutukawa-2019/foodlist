@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { appendFood } from '../api/foods'
+import { addNewFood } from '../actions/foods'
 
 // TODO: Replace this with an action creator.
 
@@ -19,7 +19,7 @@ class AddFood extends React.Component {
   }
 
   handleAdd = () => {
-    this.props.appendFood(this.state)
+    this.props.addNewFood(this.state)
   }
 
   render () {
@@ -63,7 +63,7 @@ class AddFood extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    appendFood: (food) => dispatch(appendFood(food))
+    addNewFood: (food) => dispatch(addNewFood(food))
   }
 }
 
