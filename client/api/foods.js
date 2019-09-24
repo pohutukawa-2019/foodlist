@@ -1,17 +1,27 @@
 import makeRequest from './requestor'
 
-const foodPath = '/api/v1/foods'
-const foodCategoryPath = '/api/v1/foods/category'
+const foodPath = '/foods'
+const foodCategoryPath = '/foods/category'
 
-export function getFoodById (foodId) {
+export function fetchFoodById (foodId) {
   return makeRequest(`${foodPath}/${foodId}`)
-    .then(res => res) // TODO: insert a mapping layer here
+    .then(res => res.body) // TODO: insert a mapping layer here
     .catch(() => { throw new Error('Error accessing foods api.') })
 }
 
-export function getFoodsByCategory (categoryName) {
-  return request
-    .get(`${foodCategoryPath}/${categoryName}`)
+export function fetchFoodsByCategory (categoryName) {
+  return makeRequest(`${foodCategoryPath}/${categoryName}`)
     .then(res => res.body)
-    .catch(() => { throw new Error('Error accessing food category api') })
+    .catch(() => { throw new Error('Error accessing foods api') })
+}
+
+export function appendFood (food) {
+  return makeRequest(foodPath, 'post', food)
+    .then(res => res.body)
+    .catch(() => { throw new Error('Error accessing foods api.') })
+}
+
+export function editFood (food) {
+  return makeRequest(`${foodPath}/${food.id}`, 'put', food)
+    .catch(() => { throw new Error('Error accessing foods api.') })
 }
