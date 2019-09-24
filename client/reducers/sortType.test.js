@@ -1,7 +1,8 @@
 import sortType from './sortType'
 import {
   SORT_ALPHABETICAL_ASCENDING,
-  SORT_ALPHABETICAL_DESCENDING
+  SORT_ALPHABETICAL_DESCENDING,
+  SORT_WATER_DESCENDING
 } from '../actions/sort'
 
 describe('sortType reducer', () => {
@@ -32,5 +33,15 @@ describe('sortType reducer', () => {
 
     const newState = sortType(currentState, action)
     expect(newState).toBe(SORT_ALPHABETICAL_DESCENDING)
+  })
+
+  it('returns the correct sortType when passed a SORT_WATER_DESCENDING', () => {
+    const currentState = ''
+    const action = {
+      type: SORT_WATER_DESCENDING
+    }
+
+    const newState = sortType(currentState, action)
+    expect(newState).toBe(SORT_WATER_DESCENDING)
   })
 })
