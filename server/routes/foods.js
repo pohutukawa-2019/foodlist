@@ -25,4 +25,19 @@ router.post('/', (req, res) => {
     .then(foodID => res.status(200).json(foodID))
 })
 
+router.delete('/:id', (req, res) => {
+  const foodId = req.params.id
+  db.deleteFoodById(foodId)
+    .then(food => res.status(200).json(food))
+})
+
+router.put('/:id', (req, res) => {
+  const id = Number(req.params.id)
+  const updatedFood = req.body
+
+  db.editFood(id, updatedFood)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.status(400).send(err.message))
+})
+
 module.exports = router
