@@ -60,7 +60,7 @@ describe('Database functions for food', () => {
       id: 1,
       name: 'Lamb',
       category: 'Meat',
-      carbonValue: 20.85,
+      carbonOutput: 20.85,
       waterUsage: 8763
     }
 
@@ -85,43 +85,27 @@ describe('Database functions for food', () => {
       })
       .then(food => {
         expect(food.waterUsage).toBe(newFoodItem.waterUsage)
-        expect(food.carbonValue).toBe(newFoodItem.carbonOutput)
+        expect(food.carbonOutput).toBe(newFoodItem.carbonOutput)
       })
   })
 
-it('editFood() can update details of food name', () => {
- const foodToEdit = {
-  id: 1,
-  name: 'Chicken'
- }
- return db.editFood(foodToEdit, testDb)
- .then()
-
-})
-
-it('editFood() edits details of food category', () => {
-  const foodToEdit = {
-   id: 1,
-   categoryId: 5
-  }
-  return 
-
-})
-
-it('editFood() edits details of food carbonValue', () => {
-  const foodToEdit = {
-   id: 1,
-   carbonValue: 20.85,
-  }
-  return
-
-})
-
-it('editFood() edits details of food waterUsage', () => {
-  const foodToEdit = {
-   id: 1,
-   waterUsage: 8763
-  }
-  return
-  
+  it('editFood() can update details of food', () => {
+    const foodToEdit = {
+      id: 1,
+      name: 'Chicken',
+      categoryId: 3,
+      carbonOutput: 18.75,
+      waterUsage: 490
+    }
+    return db.editFood(foodToEdit.id, foodToEdit, testDb)
+      .then(() => {
+        db.getFoodById(foodToEdit.id)
+          .then((updatedFood) => {
+            expect(updatedFood.name).toBe(foodToEdit.name)
+            expect(updatedFood.categoryId).toBe(foodToEdit.categoryId)
+            expect(updatedFood.carbonOutput).toBe(foodToEdit.cartbonOutput)
+            expect(updatedFood.waterUsage).toBe(foodToEdit.waterUsage)
+          })
+      })
+  })
 })
