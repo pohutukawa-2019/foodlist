@@ -23,7 +23,7 @@ class FoodDetails extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     foodDetails: state.foodDetails
   }
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFoodDetails: (id) => dispatch(getFoodDetails(id))
+    getFoodDetails: id => dispatch(getFoodDetails(id))
   }
 }
 
