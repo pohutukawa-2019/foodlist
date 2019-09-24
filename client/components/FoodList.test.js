@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { MemoryRouter } from 'react-router-dom'
 
-import { foods, fruits } from '../test/data'
+import { foods, fruits, categories } from '../test/data'
 import FoodList from './FoodList'
 
 jest.mock('../actions/foods', () => {
@@ -18,7 +18,7 @@ jest.mock('../actions/foods', () => {
 
 describe('<FoodList>', () => {
   it('renders an <a> for every food', () => {
-    const mockStore = configureStore([thunk])({ foods })
+    const mockStore = configureStore([thunk])({ foods, categories })
     const wrapper = mount(
       <Provider store={mockStore}>
         <MemoryRouter>
