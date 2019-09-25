@@ -11,7 +11,7 @@ class FoodDetails extends React.Component {
   }
 
   render () {
-    const { name, category, carbonOutput, waterUsage } = this.props.foodDetails
+    const { id, name, category, carbonOutput, waterUsage } = this.props.foodDetails
     return (
       <div>
         <h2>Food Details</h2>
@@ -19,7 +19,7 @@ class FoodDetails extends React.Component {
         <p data-test='category'>{category}</p>
         <p data-test='carbon'>{carbonOutput}</p>
         <p data-test='water'>{waterUsage}</p>
-        <Link to={`/edit/${this.props.foodDetails.id}`}>Edit {name}</Link>
+        <Link to={`/edit/${id}`}>Edit {name}</Link>
       </div>
     )
   }
